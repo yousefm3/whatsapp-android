@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="bold"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenbg8"
@@ -26,8 +27,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_person_green"
         android:ems="10"
@@ -38,11 +40,13 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/green"
         android:textColorHint="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/id_displayName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+    />
 
     <EditText
         android:id="@+id/id_displayName"
@@ -59,6 +63,7 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/green"
         android:textColorHint="@color/green"
         app:layout_constraintEnd_toEndOf="@+id/id_username"
         app:layout_constraintStart_toStartOf="@+id/id_username"
@@ -73,12 +78,13 @@
         android:drawableLeft="@drawable/ic_lock"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/green"
         android:textColorHint="@color/green"
         app:layout_constraintEnd_toEndOf="@+id/id_displayName"
         app:layout_constraintStart_toStartOf="@+id/id_displayName"
@@ -93,27 +99,27 @@
         android:drawableLeft="@drawable/ic_passconfirmation"
         android:ems="10"
         android:hint="Password confirmation"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/green"
         android:textColorHint="@color/green"
         app:layout_constraintEnd_toEndOf="@+id/id_password"
         app:layout_constraintStart_toStartOf="@+id/id_password"
         app:layout_constraintTop_toBottomOf="@+id/id_password" />
-    //here
 
     <Button
         android:id="@+id/AddImageBtn"
         android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/addimagebtn"
-        android:capitalize="none"
         android:drawableLeft="@drawable/ic_image"
         android:text="upload profile picture"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
         app:layout_constraintEnd_toEndOf="@+id/id_passConfirmation"
         app:layout_constraintStart_toStartOf="@+id/id_passConfirmation"
         app:layout_constraintTop_toBottomOf="@+id/id_passConfirmation" />
@@ -129,7 +135,7 @@
         android:id="@+id/registerBtn"
         android:layout_width="253dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/btn_bg"
         android:text="Register"
@@ -166,11 +172,11 @@
 
         <TextView
             android:id="@+id/signinlink"
+            style="@android:style/Widget.DeviceDefault.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
+            android:text="@string/sign_in"
             android:textColor="@color/green"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="17sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
