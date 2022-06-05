@@ -23,7 +23,6 @@ public class registerActivity extends AppCompatActivity {
     Uri uri;
     ImageView imageView;
     EditText usernameIt, displayNameIt, passIt, passConfirmationIt;
-    TextView usernameErr, displayNameErr, passErr, passConfirmationErr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +31,6 @@ public class registerActivity extends AppCompatActivity {
         displayNameIt = findViewById(R.id.id_displayName);
         passIt = findViewById(R.id.id_password);
         passConfirmationIt = findViewById(R.id.id_passConfirmation);
-        usernameErr = findViewById(R.id.pleaseEnterUsername);
-        displayNameErr = findViewById(R.id.pleaseEnterDisplayname);
-        passErr = findViewById(R.id.pleaseEnterPassword);
-        passConfirmationErr = findViewById(R.id.pleaseEnterPasswordConfirmation);
         Button registerBtn = findViewById(R.id.registerBtn);
         //sign in button
         TextView btn = findViewById(R.id.signinlink);
