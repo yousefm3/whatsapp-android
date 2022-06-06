@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EX3">
         <activity
+            android:name=".chat"
+            android:exported="true" />
+        <activity
+            android:name=".ChatList"
+            android:exported="true" />
+        <activity
             android:name=".loginActivity"
             android:exported="true">
             <intent-filter>
@@ -23,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

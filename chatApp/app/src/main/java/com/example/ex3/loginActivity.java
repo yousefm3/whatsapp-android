@@ -21,5 +21,14 @@ public class loginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        TextView loginBtn = findViewById(R.id.loginBtn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(loginActivity.this, chat.class);
+                startActivity(intent);
+            }
+        });
     }
 }

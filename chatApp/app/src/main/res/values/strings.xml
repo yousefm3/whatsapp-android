@@ -2,5 +2,6 @@
     <string name="app_name">ragheb</string>
     <string name="sign_in"><b><u>Sign in</u></b></string>
     <string name="register"><b><u>Register</u></b></string>
+    <string name="type_a_message">Type a message</string>
 
 </resources>
