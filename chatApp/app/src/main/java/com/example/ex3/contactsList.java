@@ -1,4 +1,4 @@
-package com.example.chatApp;
+package com.example.ex3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -15,17 +15,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class contactsList extends AppCompatActivity {
-     private appDB db;
-     private contactDao contactDao;
-     private List<Contact> contacts;
-     ArrayAdapter<Contact> adp;
+    private appDB db;
+    private contactDao contactDao;
+    private List<Contact> contacts;
+    ArrayAdapter<Contact> adp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
         db = Room.databaseBuilder(getApplicationContext(), appDB.class, "FooDB")
-         .allowMainThreadQueries().build();
+                .allowMainThreadQueries().build();
         contactDao = db.contactDao();
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class contactsList extends AppCompatActivity {
 
             }
         });
-        }
+    }
     @Override
     protected void onResume(){
         super.onResume();

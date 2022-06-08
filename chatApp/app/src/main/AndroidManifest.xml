@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EX3">
         <activity
-            android:name=".chat"
+            android:name=".addContact"
             android:exported="true" />
         <activity
-            android:name=".ChatList"
+            android:name=".contactsList"
+            android:exported="true" />
+        <activity
+            android:name=".chat"
             android:exported="true" />
         <activity
             android:name=".loginActivity"

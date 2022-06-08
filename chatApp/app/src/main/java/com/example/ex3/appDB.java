@@ -1,4 +1,4 @@
-package com.example.chatApp;
+package com.example.ex3;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

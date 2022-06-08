@@ -1,4 +1,4 @@
-package com.example.chatApp;
+package com.example.ex3;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

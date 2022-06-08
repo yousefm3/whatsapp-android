@@ -1,4 +1,4 @@
-package com.example.chatApp;
+package com.example.ex3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;

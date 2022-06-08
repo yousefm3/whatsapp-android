@@ -1,4 +1,4 @@
-package com.example.chatApp;
+package com.example.ex3;
 
 public class messages {
     private int Id ;

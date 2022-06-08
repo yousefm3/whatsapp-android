@@ -1,4 +1,6 @@
-package com.example.chatApp;
+package com.example.ex3;
+
+import android.widget.ImageView;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,11 +11,17 @@ public class Contact {
     private int Id;
     private String UserName;
     private String FriendUserName;
+    private ImageView image;
 
     public Contact(int id, String username, String friendusername) {
         Id = id;
         UserName = username;
         FriendUserName = friendusername;
+    }
+    public Contact(int id, String username, ImageView image) {
+        Id = id;
+        this.image = image;
+        UserName = username;
     }
     public Contact(int id, String username) {
         Id = id;
