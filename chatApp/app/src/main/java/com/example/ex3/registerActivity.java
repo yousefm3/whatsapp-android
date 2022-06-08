@@ -1,4 +1,4 @@
-package com.example.ex3;
+package com.example.chatApp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
