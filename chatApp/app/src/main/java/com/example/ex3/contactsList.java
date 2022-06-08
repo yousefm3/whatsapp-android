@@ -5,8 +5,6 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,23 +26,18 @@ public class contactsList extends AppCompatActivity {
                 .allowMainThreadQueries().build();
         contactDao = db.contactDao();
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(contactsList.this, addContact.class);
-                startActivity(i);
-            }
+        btnAdd.setOnClickListener(view -> {
+            Intent i = new Intent(contactsList.this, addContact.class);
+            startActivity(i);
         });
         contacts = contactDao.index();
         ListView lvItems = findViewById(R.id.lv_items);
         adp = new ArrayAdapter<Contact>(this, android.R.layout.simple_list_item_1, contacts);
         lvItems.setAdapter(adp);
-        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(getApplicationContext(), );
+        lvItems.setOnItemClickListener((adapterView, view, i, l) -> {
+              Intent intent = new Intent(getApplicationContext(), chat.class);
+              startActivity(intent);
 
-            }
         });
     }
     @Override
