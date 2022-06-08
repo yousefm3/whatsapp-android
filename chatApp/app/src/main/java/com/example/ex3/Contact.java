@@ -11,7 +11,6 @@ public class Contact {
     private int Id;
     private String UserName;
     private String FriendUserName;
-    private ImageView image;
 
     public Contact(int id, String username, String friendusername) {
         Id = id;
@@ -20,7 +19,6 @@ public class Contact {
     }
     public Contact(int id, String username, ImageView image) {
         Id = id;
-        this.image = image;
         UserName = username;
     }
     public Contact(int id, String username) {
