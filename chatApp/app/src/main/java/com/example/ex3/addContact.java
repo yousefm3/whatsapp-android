@@ -9,24 +9,24 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class addContact extends AppCompatActivity {
-    private appDB db;
-    private contactDao contactDao;
+    private AppDB db;
+    private userDao userDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
-        db = Room.databaseBuilder(getApplicationContext(), appDB.class, "FooDB")
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "FooDB")
                 .allowMainThreadQueries().build();
 
-        contactDao = db.contactDao();
+        userDao = db.userDao();
         Button btnSave = findViewById(R.id.saveBtn);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText etItem = findViewById(R.id.etItem);
+             EditText etItem = findViewById(R.id.etItem);
                 //autuGenerate id + friend username
-                Contact con = new Contact(0,etItem.getText().toString());
-                contactDao.insert(con);
+                Contact con = userDao.getContact(etItem.getText().toString());
+                userDao.insertContact(con);
                 finish();
             }
         });

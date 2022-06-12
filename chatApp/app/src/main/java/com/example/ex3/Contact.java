@@ -2,61 +2,57 @@ package com.example.ex3;
 
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Contact {
-    @PrimaryKey(autoGenerate = true)
-    private int Id;
-    private String UserName;
-    private String FriendUserName;
+    @NonNull
+    @PrimaryKey
+    private String contactUsername;
+    private String creatorUsername;
+    private String contactDisplayName;
+    private String contactServer;
 
-    public Contact(int id, String username, String friendusername) {
-        Id = id;
-        UserName = username;
-        FriendUserName = friendusername;
-    }
-    public Contact(int id, String username, ImageView image) {
-        Id = id;
-        UserName = username;
-    }
-    public Contact(int id, String username) {
-        Id = id;
-        UserName = username;
-    }
-    public Contact(){}
-
-    public int getId() {
-        return Id;
+    public Contact(String contactUsername, String creatorUsername, String contactDisplayName, String contactServer) {
+        this.contactUsername = contactUsername;
+        this.creatorUsername = creatorUsername;
+        this.contactDisplayName = contactDisplayName;
+        this.contactServer = contactServer;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public String getContactUsername() {
+        return contactUsername;
     }
 
-    public String getUserName() {
-        return UserName;
+    public void setContactUsername(String contactUsername) {
+        this.contactUsername = contactUsername;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public String getCreatorUsername() {
+        return creatorUsername;
     }
 
-    public String getFriendUserName() {
-        return FriendUserName;
+    public void setCreatorUsername(String creatorUsername) {
+        this.creatorUsername = creatorUsername;
     }
 
-    public void setFriendUserName(String friendUserName) {
-        FriendUserName = friendUserName;
+    public String getContactDisplayName() {
+        return contactDisplayName;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "Id=" + Id +
-                ", UserName='" + UserName + '\'' +
-                ", FriendUserName='" + FriendUserName + '\'' +
-                '}';
+    public void setContactDisplayName(String contactDisplayName) {
+        this.contactDisplayName = contactDisplayName;
+    }
+
+    public String getContactServer() {
+        return contactServer;
+    }
+
+    public void setContactServer(String contactServer) {
+        this.contactServer = contactServer;
     }
 }
+
+

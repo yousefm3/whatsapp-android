@@ -13,8 +13,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class contactsList extends AppCompatActivity {
-    private appDB db;
-    private contactDao contactDao;
+    private AppDB db;
+    private userDao userDao;
     private List<Contact> contacts;
     ArrayAdapter<Contact> adp;
 
@@ -22,15 +22,15 @@ public class contactsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
-        db = Room.databaseBuilder(getApplicationContext(), appDB.class, "FooDB")
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "DB")
                 .allowMainThreadQueries().build();
-        contactDao = db.contactDao();
+        userDao = db.userDao();
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
             Intent i = new Intent(contactsList.this, addContact.class);
             startActivity(i);
         });
-        contacts = contactDao.index();
+        contacts = userDao.getContacts("who").contacts;
         ListView lvItems = findViewById(R.id.lv_items);
         adp = new ArrayAdapter<Contact>(this, android.R.layout.simple_list_item_1, contacts);
         lvItems.setAdapter(adp);
@@ -44,7 +44,7 @@ public class contactsList extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         contacts.clear();
-        contacts.addAll(contactDao.index());
+        contacts.addAll(userDao.getContacts("who").contacts);
         adp.notifyDataSetChanged();
 
 
