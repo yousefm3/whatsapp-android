@@ -1,15 +1,18 @@
 package com.example.ex3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
+import com.example.ex3.adapters.contactsListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class contactsList extends AppCompatActivity {
@@ -22,7 +25,7 @@ public class contactsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "DB")
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
                 .allowMainThreadQueries().build();
         userDao = db.userDao();
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
@@ -30,23 +33,17 @@ public class contactsList extends AppCompatActivity {
             Intent i = new Intent(contactsList.this, addContact.class);
             startActivity(i);
         });
+        List<Contact> c = new ArrayList<>();
+        Contact c1 = new Contact("123","who","helo","dea");
+        Contact c2 = new Contact("123","who","sup","dea");
+
+        c.add(c1);
+        c.add(c2);
         contacts = userDao.getContacts("who").contacts;
-        ListView lvItems = findViewById(R.id.lv_items);
-        adp = new ArrayAdapter<Contact>(this, android.R.layout.simple_list_item_1, contacts);
-        lvItems.setAdapter(adp);
-        lvItems.setOnItemClickListener((adapterView, view, i, l) -> {
-              Intent intent = new Intent(getApplicationContext(), chat.class);
-              startActivity(intent);
-
-        });
-    }
-    @Override
-    protected void onResume(){
-        super.onResume();
-        contacts.clear();
-        contacts.addAll(userDao.getContacts("who").contacts);
-        adp.notifyDataSetChanged();
-
-
+        RecyclerView lvItems = findViewById(R.id.lstPosts);
+        final contactsListAdapter adapter = new contactsListAdapter(this);
+        lvItems.setAdapter(adapter);
+        lvItems.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setContacts(c);
     }
 }

@@ -10,11 +10,11 @@ public class user {
     @PrimaryKey
     private String username;
     private String displayName;
-    private String image;
+    private int image;
     private String server;
     private String token;
 
-    public user(String username, String displayName, String image, String server, String token) {
+    public user(String username, String displayName, int image, String server, String token) {
         this.username = username;
         this.displayName = displayName;
         this.image = image;
@@ -37,11 +37,11 @@ public class user {
         this.displayName = displayName;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
