@@ -14,12 +14,22 @@ public class Contact {
     private String creatorUsername;
     private String contactDisplayName;
     private String contactServer;
+    private int imageID;
 
-    public Contact(String contactUsername, String creatorUsername, String contactDisplayName, String contactServer) {
+    public Contact(String contactUsername, String creatorUsername, String contactDisplayName, String contactServer, int imageID) {
         this.contactUsername = contactUsername;
         this.creatorUsername = creatorUsername;
         this.contactDisplayName = contactDisplayName;
         this.contactServer = contactServer;
+        this.imageID = imageID;
+    }
+
+    public int getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
     }
 
     public String getContactUsername() {

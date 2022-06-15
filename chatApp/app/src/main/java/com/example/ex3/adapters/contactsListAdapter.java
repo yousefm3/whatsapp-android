@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,11 +20,13 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
 
     class contactViewHolder extends RecyclerView.ViewHolder {
         private final TextView name;
-
+        private final ImageView contactImage;
         private contactViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.nameofuser);
+            contactImage = itemView.findViewById(R.id.imageviewofuser);
         }
+
     }
     private List<Contact> contacts;
     private final LayoutInflater mInflater;
@@ -43,6 +46,7 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
         if (contacts != null) {
             Contact current = contacts.get(position);
             holder.name.setText(current.getContactDisplayName());
+            holder.contactImage.setImageResource(current.getImageID());
         }
     }
 
@@ -59,5 +63,4 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
         }
         return 0;
     }
-
 }

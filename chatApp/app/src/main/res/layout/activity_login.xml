@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.212" />
 
     <EditText
-        android:id="@+id/id_username"
+        android:id="@+id/login_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -47,7 +47,7 @@
 
 
     <EditText
-        android:id="@+id/id_password"
+        android:id="@+id/login_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -63,10 +63,10 @@
         android:paddingBottom="10dp"
         android:textColor="@color/green"
         android:textColorHint="@color/green"
-        app:layout_constraintEnd_toEndOf="@+id/id_username"
+        app:layout_constraintEnd_toEndOf="@+id/login_username"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/id_username"
-        app:layout_constraintTop_toBottomOf="@+id/id_username"
+        app:layout_constraintStart_toStartOf="@+id/login_username"
+        app:layout_constraintTop_toBottomOf="@+id/login_username"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -78,10 +78,10 @@
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/id_password"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
         app:layout_constraintHorizontal_bias="0.449"
-        app:layout_constraintStart_toStartOf="@+id/id_password"
-        app:layout_constraintTop_toBottomOf="@+id/id_password"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toBottomOf="@+id/login_password"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout

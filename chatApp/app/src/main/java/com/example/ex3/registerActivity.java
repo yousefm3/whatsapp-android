@@ -2,6 +2,7 @@ package com.example.ex3;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.cast.framework.media.ImagePicker;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -23,6 +26,8 @@ public class registerActivity extends AppCompatActivity {
     Uri uri;
     ImageView imageView;
     EditText usernameIt, displayNameIt, passIt, passConfirmationIt;
+    private AppDB db;
+    private userDao userDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,9 @@ public class registerActivity extends AppCompatActivity {
         Button registerBtn = findViewById(R.id.registerBtn);
         //sign in button
         TextView btn = findViewById(R.id.signinlink);
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "DB")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        userDao = db.userDao();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,8 +57,13 @@ public class registerActivity extends AppCompatActivity {
                 String displayName = displayNameIt.getText().toString();
                 String pass = passIt.getText().toString();
                 String passConfirmation = passConfirmationIt.getText().toString();
-                 boolean check = validateInfo(userName, displayName, pass, passConfirmation);
+                boolean check = validateInfo(userName, displayName, pass, passConfirmation);
                  if (check){
+                     user u = new user(userName, displayName, 2,"a", "d",pass);
+                     userDao.insertUser(u);
+                     userDao.insertContact(new Contact("pqaao84we",userName, "max", "a", R.drawable.max));
+                     userDao.insertContact(new Contact("488",userName, "evie", "a", R.drawable.evie));
+                     userDao.insertContact(new Contact("nvaa7jnj",userName, "mark", "a",R.drawable.mark));
                      Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(registerActivity.this, loginActivity.class);
                      startActivity(intent);
@@ -60,7 +73,7 @@ public class registerActivity extends AppCompatActivity {
 
             }
         });
-        //add image button
+        ///add image button
         Button choose = findViewById(R.id.AddImageBtn);
         imageView = findViewById(R.id.image);
         choose.setOnClickListener(new View.OnClickListener() {

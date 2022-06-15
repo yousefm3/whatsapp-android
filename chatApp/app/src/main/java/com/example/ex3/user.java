@@ -10,17 +10,28 @@ public class user {
     @PrimaryKey
     private String username;
     private String displayName;
+    private String pass;
     private int image;
     private String server;
     private String token;
 
-    public user(String username, String displayName, int image, String server, String token) {
+    public user(String username, String displayName, int image, String server, String token,String pass) {
         this.username = username;
         this.displayName = displayName;
         this.image = image;
         this.server = server;
         this.token = token;
+        this.pass = pass;
     }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     public String getUsername() {
         return username;
     }

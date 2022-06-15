@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class addContact extends AppCompatActivity {
     private AppDB db;
     private userDao userDao;
@@ -15,19 +17,29 @@ public class addContact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "FooDB")
-                .allowMainThreadQueries().build();
-
-        userDao = db.userDao();
+        db = loginActivity.db;
+        userDao = loginActivity.userDao;
         Button btnSave = findViewById(R.id.saveBtn);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
              EditText etItem = findViewById(R.id.etItem);
                 //autuGenerate id + friend username
-                Contact con = userDao.getContact(etItem.getText().toString());
-                userDao.insertContact(con);
-                finish();
+                String contactName = etItem.getText().toString();
+                if (userDao.getUser(contactName)!=null) {
+                    if (userDao.getContact(contactName) != null) {
+                        Contact con = new Contact(contactName, userDao.getUser(contactName).getUsername(),
+                                userDao.getUser(contactName).getDisplayName(), "A", 1);
+                        userDao.insertContact(con);
+                        finish();
+                    } else {
+                        etItem.requestFocus();
+                        etItem.setError("contact already exist");
+                    }
+                }else {
+                    etItem.requestFocus();
+                    etItem.setError("user not found");
+                }
             }
         });
     }
