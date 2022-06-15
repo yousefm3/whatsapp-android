@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="10dp"
+        android:paddingRight="10dp"
         android:paddingBottom="-5dp">
 
 
@@ -29,34 +29,52 @@
         </TextView>
 
 
-
-
-
-
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardviewofuser"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
 
-            android:id="@+id/cardviewofuser"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="55dp">
 
 
             <ImageView
+                android:id="@+id/imageviewofuser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/avatar"
-                android:id="@+id/imageviewofuser"
-                android:scaleType="centerCrop">
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar">
 
             </ImageView>
 
 
-
         </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/lastMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameofuser"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/cardviewofuser"
+            android:text="last Message here"
+            android:textColor="#6a6a6a"
+            android:textSize="15sp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/lastMessageDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="260dp"
+            android:text="Date Here"
+            android:textColor="#6a6a6a"
+            android:textSize="20sp">
+
+        </TextView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -67,9 +85,6 @@
             android:layout_toRightOf="@id/cardviewofuser"
             android:background="#a6a6a6"
             android:backgroundTint="#a6a6a6" />
-
-
-
 
 
     </RelativeLayout>
