@@ -69,7 +69,8 @@
             android:id="@+id/lastMessageDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="260dp"
+            android:layout_marginLeft="280dp"
+            android:layout_marginTop="20dp"
             android:text="Date Here"
             android:textColor="#6a6a6a"
             android:textSize="20sp">
