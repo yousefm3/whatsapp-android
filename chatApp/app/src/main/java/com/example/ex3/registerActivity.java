@@ -61,9 +61,6 @@ public class registerActivity extends AppCompatActivity {
                  if (check){
                      user u = new user(userName, displayName, 2,"a", "d",pass);
                      userDao.insertUser(u);
-                     userDao.insertContact(new Contact("pqaao84we",userName, "max", "a", R.drawable.max));
-                     userDao.insertContact(new Contact("488",userName, "evie", "a", R.drawable.evie));
-                     userDao.insertContact(new Contact("nvaa7jnj",userName, "mark", "a",R.drawable.mark));
                      Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(registerActivity.this, loginActivity.class);
                      startActivity(intent);

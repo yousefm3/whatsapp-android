@@ -15,16 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ex3.Message;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class chatAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<Message> messagesArrayList;
+    List<Message> messagesArrayList;
 
     int ITEM_SEND = 1;
     int ITEM_RECIEVE = 2;
 
-    public chatAdapter(Context context, ArrayList<Message> messagesArrayList) {
+    public chatAdapter(Context context, List<Message> messagesArrayList) {
         this.context = context;
         this.messagesArrayList = messagesArrayList;
     }
@@ -62,11 +63,11 @@ public class chatAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Message message = messagesArrayList.get(position);
-//        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(message.getContactId())) {
+        if (message.sent) {
               return ITEM_SEND;
-//        } else {
-//            return ITEM_RECIEVE;
-//        }
+       } else {
+           return ITEM_RECIEVE;
+       }
     }
 
     @Override

@@ -15,6 +15,7 @@
         app:layout_editor_absoluteX="10dp">
         <EditText
             android:id="@+id/etItem"
+            android:hint="Enter contact's username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
@@ -23,7 +24,7 @@
             android:text="save"
             android:id="@+id/saveBtn"
             android:layout_gravity="center_horizontal"
-            android:background="@color/green"/>
+            android:background="#075e54"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
