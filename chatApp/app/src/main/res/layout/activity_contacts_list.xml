@@ -5,28 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".contactsList">
+
     <TextView
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#075e54"
         android:gravity="center"
         android:text="whatsapp"
         android:textSize="20dp"
-        android:id="@+id/toolBar"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/refreshLayout" />
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-9dp"
-        tools:layout_editor_absoluteY="33dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-53dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lstPosts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
             android:paddingTop="50dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -39,5 +41,14 @@
         android:src="@drawable/ic_add_person"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_baseline_settings_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/refreshLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

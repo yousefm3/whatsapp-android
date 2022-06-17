@@ -39,7 +39,7 @@ public class registerActivity extends AppCompatActivity {
         Button registerBtn = findViewById(R.id.registerBtn);
         //sign in button
         TextView btn = findViewById(R.id.signinlink);
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "DB")
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         userDao = db.userDao();
         btn.setOnClickListener(new View.OnClickListener() {

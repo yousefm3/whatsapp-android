@@ -26,7 +26,7 @@ public class contactsList extends AppCompatActivity {
     contactsListAdapter adapter;
     AppDB db = loginActivity.db;
     userDao userDao = loginActivity.userDao;
-//    ImageView contactImage = findViewById(R.id.imageviewofuser);
+    //    ImageView contactImage = findViewById(R.id.imageviewofuser);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,11 @@ public class contactsList extends AppCompatActivity {
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
             Intent i = new Intent(contactsList.this, addContact.class);
+            startActivity(i);
+        });
+        FloatingActionButton settings = findViewById(R.id.settingBtn);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(contactsList.this, SettingsActivity.class);
             startActivity(i);
         });
 //        List<Contact> c = new ArrayList<>();
@@ -50,13 +55,6 @@ public class contactsList extends AppCompatActivity {
         lvItems.setLayoutManager(new LinearLayoutManager(this));
 //        setOnClickListener();
         adapter.setContacts(contacts);
-    }
-    @Override
-    protected void onResume(){
-        super.onResume();
-        contacts.clear();
-        contacts.addAll(userDao.getContacts(userName).contacts);
-        adapter.notifyDataSetChanged();
     }
 //    private void setOnClickListener(){
 //        listener = new contactsListAdapter.RecyclerViewClickListener() {

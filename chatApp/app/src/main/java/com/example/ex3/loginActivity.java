@@ -24,7 +24,7 @@ public class loginActivity extends AppCompatActivity {
         passET = findViewById(R.id.login_password);
         TextView btn = findViewById(R.id.registerlink);
         Button loginButton = findViewById(R.id.loginBtn);
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "DB")
+        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         userDao = db.userDao();
         loginButton.setOnClickListener(new View.OnClickListener() {
