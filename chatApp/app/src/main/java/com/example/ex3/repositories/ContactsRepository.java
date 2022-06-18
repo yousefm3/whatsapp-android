@@ -30,7 +30,7 @@ public class ContactsRepository {
 
         public ContactListData() {
             super();
-            setValue(new LinkedList<Contact>());
+            setValue(dao.getContacts(loginActivity.userName).contacts);
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.example.ex3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 
 
 import com.example.ex3.adapters.contactsListAdapter;
+import com.example.ex3.viewmodels.contactsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -23,8 +25,8 @@ public class contactsList extends AppCompatActivity {
     EditText usernameET;
     String userName = loginActivity.userName;
     contactsListAdapter adapter;
-    AppDB db = loginActivity.db;
     userDao userDao = loginActivity.userDao;
+    contactsViewModel view = new contactsViewModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +45,12 @@ public class contactsList extends AppCompatActivity {
             Intent i = new Intent(contactsList.this, SettingsActivity.class);
             startActivity(i);
         });
-        contacts = userDao.getContacts(loggedInUsername).contacts;
         RecyclerView lvItems = findViewById(R.id.lstPosts);
         adapter = new contactsListAdapter(this);
         lvItems.setAdapter(adapter);
         lvItems.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setContacts(contacts);
-
+        view.get().observe(this, contacts -> {
+            adapter.setContacts(contacts);
+        });
     }
 }
