@@ -31,7 +31,7 @@ public class ChatRepository {
 
         public ChatData() {
             super();
-            if(dao.getMessages(loginActivity.userName).messages.size() > 0)
+            if(dao.getMessages(loginActivity.userName) != null)
                 setValue(dao.getMessages(loginActivity.userName).messages);
             else {
                 setValue(new LinkedList<>());
@@ -44,7 +44,8 @@ public class ChatRepository {
 
             new Thread(() ->
             {
-                ChatData.postValue(dao.getMessages(loginActivity.userName).messages);
+                if(dao.getMessages(loginActivity.userName) != null)
+                    ChatData.postValue(dao.getMessages(loginActivity.userName).messages);
 
             }).start();
 
