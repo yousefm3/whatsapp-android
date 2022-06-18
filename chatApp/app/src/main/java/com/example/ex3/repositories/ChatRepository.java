@@ -31,7 +31,11 @@ public class ChatRepository {
 
         public ChatData() {
             super();
-            setValue(dao.getMessages(loginActivity.userName).messages);
+            if(dao.getMessages(loginActivity.userName).messages.size() > 0)
+                setValue(dao.getMessages(loginActivity.userName).messages);
+            else {
+                setValue(new LinkedList<>());
+            }
         }
 
         @Override

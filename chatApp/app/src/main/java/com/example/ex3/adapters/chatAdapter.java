@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.example.ex3.R;
 
 import androidx.annotation.NonNull;
@@ -103,6 +104,10 @@ public class chatAdapter extends RecyclerView.Adapter {
             textViewmessaage = itemView.findViewById(R.id.sendermessage);
             timeofmessage = itemView.findViewById(R.id.timeofmessage);
         }
+    }
+    public void setMessagesArrayList(List<Message> s) {
+        messagesArrayList = s;
+        notifyDataSetChanged();
     }
 
 

@@ -7,15 +7,14 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Message {
     @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     public String content;
     public String created;
     public boolean sent;
     public String contactId;
 
-    public Message(int id, String content, String created, boolean sent, String contactId) {
-        this.id = id;
+    public Message(String content, String created, boolean sent, String contactId) {
         this.content = content;
         this.created = created;
         this.sent = sent;
