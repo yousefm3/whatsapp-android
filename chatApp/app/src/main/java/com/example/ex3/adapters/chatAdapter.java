@@ -72,7 +72,10 @@ public class chatAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return messagesArrayList.size();
+        if(messagesArrayList != null) {
+            return messagesArrayList.size();
+        }
+        return 0;
     }
 
 
