@@ -21,12 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class contactsList extends AppCompatActivity {
-    private List<Contact> contacts;
     EditText usernameET;
     String userName = loginActivity.userName;
     contactsListAdapter adapter;
     userDao userDao = loginActivity.userDao;
-    contactsViewModel view = new contactsViewModel();
+    private contactsViewModel view = new contactsViewModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
