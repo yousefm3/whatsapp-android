@@ -9508,19 +9508,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Zyzz\\.nuget\\packages\\": {}
+    "C:\\Users\\ahmad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zyzz\\Desktop\\t5not2\\WebApplication4\\WebApplication4\\WebApplication4.csproj",
+      "projectUniqueName": "C:\\Users\\ahmad\\Android Studio\\WebApplication4\\WebApplication4\\WebApplication4.csproj",
       "projectName": "WebApplication4",
-      "projectPath": "C:\\Users\\Zyzz\\Desktop\\t5not2\\WebApplication4\\WebApplication4\\WebApplication4.csproj",
-      "packagesPath": "C:\\Users\\Zyzz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zyzz\\Desktop\\t5not2\\WebApplication4\\WebApplication4\\obj\\",
+      "projectPath": "C:\\Users\\ahmad\\Android Studio\\WebApplication4\\WebApplication4\\WebApplication4.csproj",
+      "packagesPath": "C:\\Users\\ahmad\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ahmad\\Android Studio\\WebApplication4\\WebApplication4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Zyzz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ahmad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9583,7 +9583,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

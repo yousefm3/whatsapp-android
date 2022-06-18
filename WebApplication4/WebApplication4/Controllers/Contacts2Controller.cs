@@ -55,9 +55,9 @@ namespace Messaging_WebApp.Controllers
 
     public class TempUser
     {
-        public String username { get; set; }
-        public String? name { get; set; }
-        public String password { get; set; }
+        public string username { get; set; }
+        public string? name { get; set; }
+        public string password { get; set; }
 
     }
     public class TempUser2
