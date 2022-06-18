@@ -16,12 +16,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserAPI {
-    Retrofit retrofit;
+    private static Retrofit retrofit;
     WebServiceAPI webServiceAPI;
+    private static UserAPI retrofitClient;
+    private static String Base_Url = "http://10.0.2.2:7008/api/contacts2/";
 
     public UserAPI() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
+                .baseUrl(Base_Url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
@@ -37,5 +39,14 @@ public class UserAPI {
             @Override
             public void onFailure(Call<List<user>> call, Throwable t) {}
         });
+    }
+    public static synchronized UserAPI getInstance(){
+        if (retrofitClient == null){
+            retrofitClient = new UserAPI();
+        }
+        return retrofitClient;
+    }
+    public WebServiceAPI getApi(){
+        return retrofit.create(WebServiceAPI.class);
     }
 }

@@ -13,6 +13,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface WebServiceAPI {
+ @POST("register")
+ Call<String> register(@Body user u);
+
+ @POST("login")
+ Call<String> login(@Body user u);
+
  @GET("contacts")
  Call<List<Contact>> getContacts();
 
@@ -24,4 +30,4 @@ public interface WebServiceAPI {
 
  @DELETE("contacts/{id}")
  Call<Void> deleteContact(@Path("id") int id);
- }
+}

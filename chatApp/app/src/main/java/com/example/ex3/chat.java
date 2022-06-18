@@ -14,12 +14,10 @@
         import com.example.ex3.adapters.chatAdapter;
         import com.example.ex3.adapters.contactsListAdapter;
         import com.example.ex3.viewmodels.ChatViewModel;
-        import com.example.ex3.viewmodels.contactsViewModel;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
-        import java.util.Date;
         import java.util.List;
 
         public class chat extends AppCompatActivity {
@@ -28,7 +26,7 @@
             chatAdapter adapter;
             private ChatViewModel view = new ChatViewModel();
 
-            @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
@@ -49,7 +47,7 @@
                 Message msgSender = new Message(content.getText().toString(),time,true,loginActivity.userName);
                 //Message msgReviever = new Message();
                 userDao.insertMessage(msgSender);
-               // userDao.insertMessage(msgReviever);
+                // userDao.insertMessage(msgReviever);
             }
         });
 
@@ -63,6 +61,5 @@
                 adapter.setMessagesArrayList(messages);
             }
         });
-
     }
 }

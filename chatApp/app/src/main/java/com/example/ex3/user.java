@@ -9,27 +9,27 @@ public class user {
     @NonNull
     @PrimaryKey
     private String username;
-    private String displayName;
-    private String pass;
+    private String name;
+    private String password;
     private int image;
     private String server;
     private String token;
 
-    public user(String username, String displayName, int image, String server, String token,String pass) {
+    public user(@NonNull String username, String name, String password, int image, String server, String token) {
         this.username = username;
-        this.displayName = displayName;
+        this.name = name;
+        this.password = password;
         this.image = image;
         this.server = server;
         this.token = token;
-        this.pass = pass;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String pass) {
+        this.password = pass;
     }
 
     public String getUsername() {
@@ -40,12 +40,12 @@ public class user {
         this.username = username;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getName() {
+        return name;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setName(String displayName) {
+        this.name = displayName;
     }
 
     public int getImage() {
@@ -58,6 +58,10 @@ public class user {
 
     public String getServer() {
         return server;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getToken() {

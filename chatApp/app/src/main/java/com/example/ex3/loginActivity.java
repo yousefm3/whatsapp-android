@@ -11,6 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ex3.api.UserAPI;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class loginActivity extends AppCompatActivity {
     public static AppDB db;
     public static userDao userDao;
@@ -34,10 +40,11 @@ public class loginActivity extends AppCompatActivity {
                 userName = usernameET.getText().toString();
                 String correctPass = "";
                 if(userDao.getUser(userName)!=null) {
-                    correctPass = userDao.getUser(userName).getPass();
+                    correctPass = userDao.getUser(userName).getPassword();
                 }
                 if(userDao.getUser(userName)!=null && (correctPass.equals(passWord))) {
-                    Intent intent = new Intent(loginActivity.this, chat.class);
+                    loginUser(userName, passWord);
+                    Intent intent = new Intent(loginActivity.this, contactsList.class);
                     startActivity(intent);
                 }else if (userDao.getUser(userName)==null){
                     usernameET.requestFocus();
@@ -54,6 +61,31 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(loginActivity.this, registerActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+    private void loginUser(String username, String password) {
+        String name = "default";
+        if(userDao.getUser(username)!=null) {
+            name = userDao.getUser(username).getName();
+        }
+        user u = new user(username,name, password,1,"server", "token");
+        Call<String> call = UserAPI.getInstance().getApi().login(u);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String resp = response.body();
+                if (response.isSuccessful()){
+                    Toast.makeText(loginActivity.this,"welcome" + u.getName(), Toast.LENGTH_SHORT).show();
+                    u.setToken(String.valueOf(resp));
+                }
+                else{
+                    Toast.makeText(loginActivity.this,String.valueOf(resp), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(loginActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

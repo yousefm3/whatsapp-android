@@ -34,7 +34,7 @@ public class addContact extends AppCompatActivity {
                 if (userDao.getUser(contactName)!=null) {
                     if (userDao.getContact(contactName) == null) {
                         Contact con = new Contact(contactName, username,
-                                userDao.getUser(contactName).getDisplayName(), "A", 1);
+                                userDao.getUser(contactName).getName(), "A", 1);
                         userDao.insertContact(con);
                         Toast.makeText(getApplicationContext(),"Add succeed",Toast.LENGTH_SHORT).show();
                         finish();

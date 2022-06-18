@@ -16,10 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.cast.framework.media.ImagePicker;
+import com.example.ex3.api.UserAPI;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class registerActivity extends AppCompatActivity {
     int SELECT_PHOTO = 1;
@@ -59,7 +63,8 @@ public class registerActivity extends AppCompatActivity {
                 String passConfirmation = passConfirmationIt.getText().toString();
                 boolean check = validateInfo(userName, displayName, pass, passConfirmation);
                  if (check){
-                     user u = new user(userName, displayName, 2,"a", "d",pass);
+                     registerUser(userName, displayName, pass);
+                     user u = new user(userName, displayName, pass,1, "server","token");
                      userDao.insertUser(u);
                      Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(registerActivity.this, loginActivity.class);
@@ -82,8 +87,29 @@ public class registerActivity extends AppCompatActivity {
             }
         });
     }
+    private void registerUser(String username, String name, String password) {
+        user u = new user(username,name, password, 1,"server","token");
+        Call<String> call = UserAPI.getInstance().getApi().register(u);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String responseRegister = response.body();
+                if (response.isSuccessful()){
+                    Toast.makeText(registerActivity.this,String.valueOf(responseRegister), Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(registerActivity.this,String.valueOf(responseRegister), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(registerActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-    private boolean validateInfo(String userName, String displayName, String pass, String passConfirmation) {
+
+            private boolean validateInfo(String userName, String displayName, String pass, String passConfirmation) {
         if (userName.length() == 0){
             usernameIt.requestFocus();
             usernameIt.setError("Field cannot be empty");
