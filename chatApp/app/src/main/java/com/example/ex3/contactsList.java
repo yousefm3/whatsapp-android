@@ -11,26 +11,38 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.example.ex3.adapters.contactsListAdapter;
+import com.example.ex3.api.ContactAPI;
+import com.example.ex3.api.UserAPI;
 import com.example.ex3.viewmodels.contactsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class contactsList extends AppCompatActivity {
     EditText usernameET;
     String userName = loginActivity.userName;
     contactsListAdapter adapter;
     userDao userDao = loginActivity.userDao;
+    user u = loginActivity.loggedIn;
     private contactsViewModel view = new contactsViewModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
-
+        //list of contacts from API
+        List<Contact> APIcontacts;
+        ContactAPI contactAPI= new ContactAPI();
+        APIcontacts = contactAPI.get(u.getUsername());
+        //
         usernameET = findViewById(R.id.login_username);
         String loggedInUsername = userName;
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
@@ -52,4 +64,5 @@ public class contactsList extends AppCompatActivity {
             adapter.setContacts(contacts);
         });
     }
+
 }

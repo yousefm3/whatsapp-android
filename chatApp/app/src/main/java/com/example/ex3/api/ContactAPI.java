@@ -6,6 +6,7 @@ import com.example.ex3.Contact;
 import com.example.ex3.MyApplication;
 import com.example.ex3.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ContactAPI {
  Retrofit retrofit;
  WebServiceAPI webServiceAPI;
+ public static List<Contact> contacts;
 
   public ContactAPI() {
   retrofit = new Retrofit.Builder()
@@ -25,16 +27,17 @@ public class ContactAPI {
   .build();
   webServiceAPI = retrofit.create(WebServiceAPI.class);
   }
-   public void get() {
-  Call<List<Contact>> call = webServiceAPI.getContacts();
-  call.enqueue(new Callback<List<Contact>>() {
-  @Override
-  public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-   List<Contact> contacts = response.body();
-  }
+   public List<Contact> get(String user) {
+       Call<List<Contact>> call = webServiceAPI.getContacts(user);
+       call.enqueue(new Callback<List<Contact>>() {
+       @Override
+       public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+         contacts = response.body();
+       }
 
-  @Override
-  public void onFailure(Call<List<Contact>> call, Throwable t) {}
-  });
+       @Override
+       public void onFailure(Call<List<Contact>> call, Throwable t) {}
+       });
+       return contacts;
   }
  }

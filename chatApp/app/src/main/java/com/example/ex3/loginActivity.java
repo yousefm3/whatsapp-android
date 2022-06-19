@@ -21,6 +21,7 @@ public class loginActivity extends AppCompatActivity {
     public static AppDB db;
     public static userDao userDao;
     EditText usernameET, passET;
+    public static user loggedIn;
     public static String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class loginActivity extends AppCompatActivity {
                     correctPass = userDao.getUser(userName).getPassword();
                 }
                 if(userDao.getUser(userName)!=null && (correctPass.equals(passWord))) {
+                    loggedIn = userDao.getUser(userName);
                     loginUser(userName, passWord);
                     Intent intent = new Intent(loginActivity.this, chat.class);
                     startActivity(intent);

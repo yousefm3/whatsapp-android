@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -20,7 +21,7 @@ public interface WebServiceAPI {
  Call<String> login(@Body user u);
 
  @GET("contacts")
- Call<List<Contact>> getContacts();
+ Call<List<Contact>> getContacts(@Body String username);
 
  @GET("users")
  Call<List<user>> getUsers();
