@@ -44,7 +44,7 @@ public class loginActivity extends AppCompatActivity {
                 }
                 if(userDao.getUser(userName)!=null && (correctPass.equals(passWord))) {
                     loginUser(userName, passWord);
-                    Intent intent = new Intent(loginActivity.this, contactsList.class);
+                    Intent intent = new Intent(loginActivity.this, chat.class);
                     startActivity(intent);
                 }else if (userDao.getUser(userName)==null){
                     usernameET.requestFocus();

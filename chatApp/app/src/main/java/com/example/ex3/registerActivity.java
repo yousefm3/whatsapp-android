@@ -118,6 +118,10 @@ public class registerActivity extends AppCompatActivity {
             displayNameIt.requestFocus();
             displayNameIt.setError("Field cannot be empty");
             return false;
+        } else if (userDao.getUser(userName)!=null) {
+            usernameIt.requestFocus();
+            usernameIt.setError("username exist");
+            return false;
         }
         else if(pass.length() == 0){
             passIt.requestFocus();

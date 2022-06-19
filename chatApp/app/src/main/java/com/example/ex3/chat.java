@@ -46,11 +46,13 @@
                 EditText content = findViewById(R.id.getmessage);
                 Message msgSender = new Message(content.getText().toString(),time,true,loginActivity.userName);
                 //Message msgReviever = new Message();
+                /**
+                 * ...
+                 */
                 userDao.insertMessage(msgSender);
                 // userDao.insertMessage(msgReviever);
             }
         });
-
         RecyclerView lvItems = findViewById(R.id.recyclerviewofspecific);
         adapter = new chatAdapter(this,messages);
         lvItems.setAdapter(adapter);
