@@ -75,6 +75,7 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
         //
         Toast.makeText(this,"asdasd", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(contactsList.this, chat.class);
+        i.putExtra("contactId",userDao.getContacts(loginActivity.userName).contacts.get(position).getContactUsername());
         startActivity(i);
     }
 }

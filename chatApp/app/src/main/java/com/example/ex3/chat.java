@@ -17,6 +17,8 @@
         import com.example.ex3.viewmodels.ChatViewModel;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+        import org.w3c.dom.Text;
+
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
         import java.util.List;
@@ -31,6 +33,12 @@
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        Bundle extras = getIntent().getExtras();
+        String ContactId = extras.getString("contactId");
+        System.out.println(ContactId);
+
+        TextView textView = findViewById(R.id.Nameofspecificuser);
+        textView.setText(userDao.getUser(ContactId).getName());
         ImageButton btnReturn = findViewById(R.id.backbuttonofspecificchat);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
