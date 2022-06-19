@@ -40,4 +40,4 @@ public class ContactAPI {
        });
        return contacts;
   }
- }
+}

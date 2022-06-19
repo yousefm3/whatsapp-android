@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,10 +28,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class contactsList extends AppCompatActivity {
+public class contactsList extends AppCompatActivity implements RecyclerViewItem{
     EditText usernameET;
     String userName = loginActivity.userName;
     contactsListAdapter adapter;
+    contactsListAdapter a;
     userDao userDao = loginActivity.userDao;
     user u = loginActivity.loggedIn;
     private contactsViewModel view = new contactsViewModel();
@@ -39,9 +41,9 @@ public class contactsList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list);
         //list of contacts from API
-        List<Contact> APIcontacts;
-        ContactAPI contactAPI= new ContactAPI();
-        APIcontacts = contactAPI.get(u.getUsername());
+//        List<Contact> APIcontacts;
+//        ContactAPI contactAPI= new ContactAPI();
+//        APIcontacts = contactAPI.get(u.getUsername());
         //
         usernameET = findViewById(R.id.login_username);
         String loggedInUsername = userName;
@@ -57,7 +59,7 @@ public class contactsList extends AppCompatActivity {
             startActivity(i);
         });
         RecyclerView lvItems = findViewById(R.id.lstPosts);
-        adapter = new contactsListAdapter(this);
+        adapter = new contactsListAdapter(this, this);
         lvItems.setAdapter(adapter);
         lvItems.setLayoutManager(new LinearLayoutManager(this));
         view.get().observe(this, contacts -> {
@@ -65,4 +67,14 @@ public class contactsList extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemClick(int position) {
+        //Error here..
+//        TextView textView = findViewById(R.id.Nameofspecificuser);
+//        textView.setText("default");
+        //
+        Toast.makeText(this,"asdasd", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(contactsList.this, chat.class);
+        startActivity(i);
+    }
 }

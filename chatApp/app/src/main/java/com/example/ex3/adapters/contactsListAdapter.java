@@ -1,7 +1,6 @@
 package com.example.ex3.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,46 +8,52 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ex3.Contact;
 import com.example.ex3.R;
-import com.example.ex3.chat;
-import com.example.ex3.contactsList;
-import com.example.ex3.loginActivity;
-import com.example.ex3.registerActivity;
+import com.example.ex3.RecyclerViewItem;
 
 
 import java.util.List;
 
 public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapter.contactViewHolder> {
-
-
+    private List<Contact> contacts;
+    private final LayoutInflater mInflater;
+    private RecyclerViewItem recyclerViewItem;
+    public contactsListAdapter(Context context,RecyclerViewItem recyclerViewItem) {
+        mInflater = LayoutInflater.from(context);
+        this.recyclerViewItem = recyclerViewItem;
+    }
     class contactViewHolder extends RecyclerView.ViewHolder {
         private final TextView name;
         private final ImageView contactImage;
         private final RelativeLayout layout;
 
-        private contactViewHolder(View itemView) {
+        private contactViewHolder(View itemView, RecyclerViewItem recyclerViewItem) {
             super(itemView);
             name = itemView.findViewById(R.id.nameofuser);
             contactImage = itemView.findViewById(R.id.imageviewofuser);
             layout = itemView.findViewById(R.id.layout);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewItem != null){
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION){
+                            recyclerViewItem.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
-
-    }
-    private List<Contact> contacts;
-    private final LayoutInflater mInflater;
-    public contactsListAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
     }
 
 
     @Override
     public contactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.chatviewlayout, parent, false);
-        return new contactViewHolder(itemView);
+        return new contactViewHolder(itemView,recyclerViewItem);
     }
 
     @Override

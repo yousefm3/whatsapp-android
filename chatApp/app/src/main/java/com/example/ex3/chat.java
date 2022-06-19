@@ -10,6 +10,7 @@
         import android.view.View;
         import android.widget.EditText;
         import android.widget.ImageButton;
+        import android.widget.TextView;
 
         import com.example.ex3.adapters.chatAdapter;
         import com.example.ex3.adapters.contactsListAdapter;
@@ -49,6 +50,7 @@
                 /**
                  * ...
                  */
+                System.out.println(msgSender);
                 userDao.insertMessage(msgSender);
                 // userDao.insertMessage(msgReviever);
             }
