@@ -1,6 +1,8 @@
 package com.example.ex3.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
     public static List<Contact> contacts;
     private final LayoutInflater mInflater;
     private RecyclerViewItem recyclerViewItem;
+    int row_index = -1;
     public contactsListAdapter(Context context,RecyclerViewItem recyclerViewItem) {
         mInflater = LayoutInflater.from(context);
         this.recyclerViewItem = recyclerViewItem;
@@ -57,11 +60,25 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
     }
 
     @Override
-    public void onBindViewHolder(contactViewHolder holder, int position) {
+    public void onBindViewHolder(contactViewHolder holder,int position) {
         if (contacts != null) {
             Contact current = contacts.get(position);
             holder.name.setText(current.getContactDisplayName());
         }
+//        int x = position;
+//        holder.layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                row_index=x;
+//                notifyDataSetChanged();
+//            }
+//        });
+//        if (row_index == position){
+//            holder.layout.setBackgroundColor(Color.GRAY);
+//        } else{
+//            holder.layout.setBackgroundColor(Color.parseColor("#dddddd"));
+//        }
+
     }
 
     public List<Contact> getContacts() {
