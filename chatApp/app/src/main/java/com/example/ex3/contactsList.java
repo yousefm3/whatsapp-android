@@ -36,6 +36,7 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
     userDao userDao = loginActivity.userDao;
     user u = loginActivity.loggedIn;
     private contactsViewModel view = new contactsViewModel();
+    public static List<Contact> contacts = contactsListAdapter.contacts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +70,8 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
 
     @Override
     public void onItemClick(int position) {
-        //Error here..
-//        TextView textView = findViewById(R.id.Nameofspecificuser);
-//        textView.setText("default");
-        //
-        Toast.makeText(this,"asdasd", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(contactsList.this, chat.class);
-        i.putExtra("contactId",userDao.getContacts(loginActivity.userName).contacts.get(position).getContactUsername());
+        i.putExtra("nameofuser","adsfadsf");
         startActivity(i);
     }
 }

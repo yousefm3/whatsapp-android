@@ -18,7 +18,7 @@ import com.example.ex3.RecyclerViewItem;
 import java.util.List;
 
 public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapter.contactViewHolder> {
-    private List<Contact> contacts;
+    public static List<Contact> contacts;
     private final LayoutInflater mInflater;
     private RecyclerViewItem recyclerViewItem;
     public contactsListAdapter(Context context,RecyclerViewItem recyclerViewItem) {

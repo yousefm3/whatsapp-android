@@ -33,12 +33,14 @@
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        String ContactId = "not set";
         Bundle extras = getIntent().getExtras();
-        String ContactId = extras.getString("contactId");
-        System.out.println(ContactId);
+        if (extras != null){
+            ContactId = extras.getString("nameofuser");
+        }
 
         TextView textView = findViewById(R.id.Nameofspecificuser);
-        textView.setText(userDao.getUser(ContactId).getName());
+        textView.setText(ContactId);
         ImageButton btnReturn = findViewById(R.id.backbuttonofspecificchat);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
