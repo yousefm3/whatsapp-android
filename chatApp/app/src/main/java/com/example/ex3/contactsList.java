@@ -71,7 +71,7 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
     @Override
     public void onItemClick(int position) {
         Intent i = new Intent(contactsList.this, chat.class);
-        i.putExtra("nameofuser","adsfadsf");
+        i.putExtra("nameofuser",userDao.getContacts(loginActivity.userName).contacts.get(position).getContactUsername());
         startActivity(i);
     }
 }
