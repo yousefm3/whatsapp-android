@@ -19,11 +19,18 @@ public class UserAPI {
     private static Retrofit retrofit;
     WebServiceAPI webServiceAPI;
     private static UserAPI retrofitClient;
-    private static String Base_Url = "http://10.0.2.2:7008/api/contacts2/";
+    public static String Base_Url = "http://10.0.2.2:7008/api/contacts2/";
+    public static String getBase_Url() {
+        return Base_Url;
+    }
+
+    public static void setBase_Url(String base_Url) {
+        Base_Url = base_Url;
+    }
 
     public UserAPI() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(Base_Url)
+                .baseUrl(getBase_Url())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);

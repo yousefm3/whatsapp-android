@@ -17,6 +17,7 @@ import com.example.ex3.contactsList;
 import com.example.ex3.registerActivity;
 import com.example.ex3.user;
 import com.example.ex3.userDao;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +42,12 @@ public class loginActivity extends AppCompatActivity {
         usersDB = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         usersDao2 = usersDB.userDao();
+        FloatingActionButton settings_login = findViewById(R.id.settingBtn_login);
+        settings_login.setOnClickListener(view -> {
+            Intent i = new Intent(loginActivity.this, SettingsActivity.class);
+            startActivity(i);
+            finish();
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

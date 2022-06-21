@@ -23,6 +23,9 @@ public interface WebServiceAPI {
  @GET("contacts")
  Call<List<Contact>> getContacts(@Body String username);
 
+ @POST("contacts")
+ Call<List<Contact>> AddContact(@Body String username);
+
  @GET("users")
  Call<List<user>> getUsers();
 
