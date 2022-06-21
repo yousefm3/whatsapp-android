@@ -62,16 +62,21 @@ public class registerActivity extends AppCompatActivity {
                 String pass = passIt.getText().toString();
                 String passConfirmation = passConfirmationIt.getText().toString();
                 boolean check = validateInfo(userName, displayName, pass, passConfirmation);
-                 if (check){
-                     registerUser(userName, displayName, pass);
-                     user u = new user(userName, displayName, pass,1, "server","token");
-                     userDao.insertUser(u);
-                     Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
-                     Intent intent = new Intent(registerActivity.this, loginActivity.class);
-                     startActivity(intent);
-                 } else{
-                     Toast.makeText(getApplicationContext(),"Registeration failed",Toast.LENGTH_SHORT).show();
-                 }
+                if (check){
+                    registerUser(userName, displayName, pass);
+                    user u = new user(userName, displayName, pass,1, "server","token");
+                    userDao.insertUser(u);
+                    Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(registerActivity.this, loginActivity.class);
+                    AppDB db2 = Room.databaseBuilder(getApplicationContext(), AppDB.class, userName)
+                            .allowMainThreadQueries().build();
+                    userDao userDao2 = db2.userDao();
+                    userDao2.insertUser(u);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Toast.makeText(getApplicationContext(),"Registeration failed",Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -109,7 +114,7 @@ public class registerActivity extends AppCompatActivity {
     }
 
 
-            private boolean validateInfo(String userName, String displayName, String pass, String passConfirmation) {
+    private boolean validateInfo(String userName, String displayName, String pass, String passConfirmation) {
         if (userName.length() == 0){
             usernameIt.requestFocus();
             usernameIt.setError("Field cannot be empty");

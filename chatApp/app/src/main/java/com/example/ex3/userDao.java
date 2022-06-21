@@ -29,6 +29,9 @@ public interface userDao {
     @Query("SELECT * FROM Contact WHERE contactUsername = :contactUsername")
     Contact getContact(String contactUsername);
 
+    @Query("SELECT * FROM Contact")
+    List<Contact> getContacts2();
+
     @Insert
     void insertUser(user... users);
 

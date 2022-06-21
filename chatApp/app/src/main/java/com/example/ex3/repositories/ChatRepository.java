@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.ex3.AppDB;
 import com.example.ex3.Contact;
+import com.example.ex3.ContactWithMessages;
 import com.example.ex3.Message;
 import com.example.ex3.api.ContactAPI;
 import com.example.ex3.loginActivity;
@@ -17,9 +18,11 @@ public class ChatRepository {
     private userDao dao;
     private ChatData ChatData;
     private ContactAPI api;
+    private String contactName;
 
-    public ChatRepository() {
-        dao = loginActivity.db.userDao();
+    public ChatRepository(String contact) {
+        dao = loginActivity.userDao;
+        contactName = contact;
         ChatData = new ChatData();
         api = new ContactAPI();
 
@@ -31,8 +34,9 @@ public class ChatRepository {
 
         public ChatData() {
             super();
-            if(dao.getMessages(loginActivity.userName) != null)
-                setValue(dao.getMessages(loginActivity.userName).messages);
+            ContactWithMessages t = dao.getMessages(contactName);
+            if(t != null)
+                setValue(t.messages);
             else {
                 setValue(new LinkedList<>());
             }
@@ -51,7 +55,7 @@ public class ChatRepository {
 
         }
     }
-    public LiveData<List<Message>> getAll() {
+    public MutableLiveData<List<Message>> getAll() {
         return ChatData;
     }
 

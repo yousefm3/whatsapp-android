@@ -28,14 +28,22 @@ public class addContact extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             EditText etItem = findViewById(R.id.etItem);
+                EditText etItem = findViewById(R.id.etItem);
                 //autuGenerate id + friend username
                 String contactName = etItem.getText().toString();
-                if (userDao.getUser(contactName)!=null) {
+                AppDB db2 = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
+                        .allowMainThreadQueries().build();
+                userDao userDao2 = db2.userDao();
+                AppDB db_contact = Room.databaseBuilder(getApplicationContext(), AppDB.class, contactName)
+                        .allowMainThreadQueries().build();
+                userDao contactDao = db_contact.userDao();
+                if (userDao2.getUser(contactName)!=null) {
                     if (userDao.getContact(contactName) == null) {
                         Contact con = new Contact(contactName, username,
-                                userDao.getUser(contactName).getName(), "A", 1);
+                                userDao2.getUser(contactName).getName(), "A", 1);
                         userDao.insertContact(con);
+                        contactDao.insertContact(new Contact(loginActivity.userName,contactName,
+                                userDao.getUser(loginActivity.userName).getName(),"A",1));
                         Toast.makeText(getApplicationContext(),"Add succeed",Toast.LENGTH_SHORT).show();
                         finish();
                     } else {

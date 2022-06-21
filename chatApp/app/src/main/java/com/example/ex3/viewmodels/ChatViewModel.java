@@ -16,8 +16,9 @@ public class ChatViewModel extends ViewModel {
 
     private LiveData<List<Message>> chat;
 
-    public ChatViewModel () {
-        repository = new ChatRepository();
+
+    public ChatViewModel (String contactName) {
+        repository = new ChatRepository(contactName);
         chat = repository.getAll();
     }
 

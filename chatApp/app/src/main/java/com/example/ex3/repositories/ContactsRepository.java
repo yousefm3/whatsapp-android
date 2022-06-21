@@ -8,6 +8,7 @@ import com.example.ex3.Contact;
 import com.example.ex3.api.ContactAPI;
 import com.example.ex3.loginActivity;
 import com.example.ex3.userDao;
+import com.example.ex3.userWithContacts;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +31,8 @@ public class ContactsRepository {
 
         public ContactListData() {
             super();
-            setValue(dao.getContacts(loginActivity.userName).contacts);
+            if (dao.getContacts2() != null)
+                setValue(dao.getContacts2());
         }
 
         @Override
@@ -39,12 +41,14 @@ public class ContactsRepository {
 
             new Thread(() ->
             {
-                ContactListData.postValue(dao.getContacts(loginActivity.userName).contacts);
+                if (dao.getContacts(loginActivity.userName) != null)
+                    ContactListData.postValue(dao.getContacts(loginActivity.userName).contacts);
 
             }).start();
 
         }
     }
+
     public LiveData<List<Contact>> getAll() {
         return ContactListData;
     }

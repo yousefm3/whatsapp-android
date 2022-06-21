@@ -30,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(SettingsActivity.this, contactsList.class);
                 startActivity(i);
+                finish();
             }
         });
         aSwitch = findViewById(R.id.mode);

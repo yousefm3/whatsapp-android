@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,6 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
     userDao userDao = loginActivity.userDao;
     user u = loginActivity.loggedIn;
     private contactsViewModel view = new contactsViewModel();
-    public static List<Contact> contacts = contactsListAdapter.contacts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,17 +48,29 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
 //        APIcontacts = contactAPI.get(u.getUsername());
         //
         usernameET = findViewById(R.id.login_username);
-        String loggedInUsername = userName;
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
             Intent i = new Intent(contactsList.this, addContact.class);
             i.putExtra("username",userName);
             startActivity(i);
+            finish();
         });
+
+        ImageButton logout = findViewById(R.id.backtologin);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(contactsList.this, loginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         FloatingActionButton settings = findViewById(R.id.settingBtn);
         settings.setOnClickListener(view -> {
             Intent i = new Intent(contactsList.this, SettingsActivity.class);
             startActivity(i);
+            finish();
         });
         RecyclerView lvItems = findViewById(R.id.lstPosts);
         adapter = new contactsListAdapter(this, this);
@@ -68,9 +81,11 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
         });
     }
 
+    @Override
     public void onItemClick(int position) {
         Intent i = new Intent(contactsList.this, chat.class);
-        i.putExtra("nameofuser",userDao.getContacts(loginActivity.userName).contacts.get(position).getContactDisplayName());
+        i.putExtra("contactId",userDao.getContacts2().get(position).getContactUsername());
         startActivity(i);
+        finish();
     }
 }

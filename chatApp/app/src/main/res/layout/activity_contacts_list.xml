@@ -18,13 +18,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/refreshLayout" />
 
+    <ImageButton
+        android:id="@+id/backtologin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_login_24"
+        android:tint="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/toolBar"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageButton>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-53dp">
+        tools:layout_editor_absoluteX="-40dp"
+        tools:layout_editor_absoluteY="-82dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lstPosts"

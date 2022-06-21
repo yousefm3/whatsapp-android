@@ -11,7 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ex3.AppDB;
 import com.example.ex3.api.UserAPI;
+import com.example.ex3.contactsList;
+import com.example.ex3.registerActivity;
+import com.example.ex3.user;
+import com.example.ex3.userDao;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,10 +24,12 @@ import retrofit2.Response;
 
 public class loginActivity extends AppCompatActivity {
     public static AppDB db;
-    public static userDao userDao;
+    public static com.example.ex3.userDao userDao;
     EditText usernameET, passET;
     public static user loggedIn;
     public static String userName;
+    private static AppDB usersDB;
+    public static userDao usersDao2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,24 +38,28 @@ public class loginActivity extends AppCompatActivity {
         passET = findViewById(R.id.login_password);
         TextView btn = findViewById(R.id.registerlink);
         Button loginButton = findViewById(R.id.loginBtn);
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
+        usersDB = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        userDao = db.userDao();
+        usersDao2 = usersDB.userDao();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String passWord = passET.getText().toString();
                 userName = usernameET.getText().toString();
                 String correctPass = "";
-                if(userDao.getUser(userName)!=null) {
-                    correctPass = userDao.getUser(userName).getPassword();
+                if(usersDao2.getUser(userName)!=null) {
+                    correctPass = usersDao2.getUser(userName).getPassword();
                 }
-                if(userDao.getUser(userName)!=null && (correctPass.equals(passWord))) {
-                    loggedIn = userDao.getUser(userName);
+                if(usersDao2.getUser(userName)!=null && (correctPass.equals(passWord))) {
+                    loggedIn = usersDao2.getUser(userName);
                     loginUser(userName, passWord);
-                    Intent intent = new Intent(loginActivity.this, horizontal.class);
+                    Intent intent = new Intent(loginActivity.this, contactsList.class);
+                    db = Room.databaseBuilder(getApplicationContext(), AppDB.class, userName)
+                            .allowMainThreadQueries().build();
+                    userDao = db.userDao();
                     startActivity(intent);
-                }else if (userDao.getUser(userName)==null){
+                    finish();
+                }else if (usersDao2.getUser(userName)==null){
                     usernameET.requestFocus();
                     usernameET.setError("Username Not Found");
                     Toast.makeText(getApplicationContext(),"login failed",Toast.LENGTH_SHORT).show();
@@ -68,8 +79,8 @@ public class loginActivity extends AppCompatActivity {
     }
     private void loginUser(String username, String password) {
         String name = "default";
-        if(userDao.getUser(username)!=null) {
-            name = userDao.getUser(username).getName();
+        if(usersDao2.getUser(username)!=null) {
+            name = usersDao2.getUser(username).getName();
         }
         user u = new user(username,name, password,1,"server", "token");
         Call<String> call = UserAPI.getInstance().getApi().login(u);
