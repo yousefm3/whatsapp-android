@@ -31,6 +31,8 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
     contactsListAdapter adapter;
     private ChatViewModel viewModel;
     private contactsViewModel _view = new contactsViewModel();
+    EditText usernameET;
+    String userName = loginActivity.userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,19 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
                 startActivity(i);
                 finish();
             }
+        });
+        usernameET = findViewById(R.id.login_username);
+        FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(view -> {
+            Intent i = new Intent(chat.this, addContact.class);
+            i.putExtra("username",userName);
+            startActivity(i);
+        });
+        FloatingActionButton settings = findViewById(R.id.settingBtn);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(chat.this, SettingsActivity.class);
+            startActivity(i);
+            finish();
         });
         ImageButton btnSend = findViewById(R.id.imageviewsendmessage);
 

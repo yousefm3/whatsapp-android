@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="90dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@drawable/row_background"
     android:id="@+id/layout_"
+    android:padding="5dp"
+
     >
 
     <RelativeLayout
@@ -15,6 +17,17 @@
         android:paddingRight="10dp"
         android:paddingBottom="-5dp"
         android:id="@+id/specific_contact">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/lastMessage"
+            android:layout_alignEnd="@+id/lastMessageDate"
+            android:layout_alignTop="@+id/lastMessage"
+            android:layout_marginStart="-5dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="10dp"
+            android:text="______________________________________________________"
+            android:textColor="#B3ACAC" />
 
 
         <TextView
@@ -22,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/cardviewofuser"
             android:text="Name Display Here"
             android:textColor="#0b0b0b"
@@ -62,7 +75,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/nameofuser"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/cardviewofuser"
             android:text="last Message here"
             android:textColor="#6a6a6a"
@@ -75,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="280dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="Date Here"
             android:textColor="#6a6a6a"
             android:textSize="20sp">

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".contactsList"
     android:layout_toLeftOf="@id/chat_horizontal">
+
     <TextView
         android:id="@+id/toolBar"
         android:layout_width="300dp"
@@ -13,10 +14,12 @@
         android:background="#075e54"
         android:gravity="center"
         android:text="whatsapp"
-        android:textSize="20dp"
+        android:paddingRight="180dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/refreshLayout_horizontal" />
-
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout_horizontal"
@@ -31,12 +34,41 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:paddingTop="50dp" />
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_person_green"
+        app:fabSize="mini"
+        android:backgroundTint="@color/colorDefault"
+        app:layout_constraintEnd_toStartOf="@id/chat_horizontal"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="60dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_settings_green"
+        app:fabSize="mini"
+        android:backgroundTint="@color/colorDefault"
+        app:layout_constraintEnd_toStartOf="@id/chat_horizontal"
+        app:layout_constraintTop_toTopOf="parent" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/chat_horizontal"
-        android:layout_marginLeft="300dp">
+        android:layout_marginLeft="300dp"
+        android:background="@drawable/chat_background">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -163,9 +195,8 @@
 
             </ImageButton>
 
-
-
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

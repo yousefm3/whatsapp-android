@@ -56,13 +56,12 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
 
         });
 
-        ImageButton logout = findViewById(R.id.backtologin);
+        FloatingActionButton logout = findViewById(R.id.backtologin);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(contactsList.this, loginActivity.class);
                 startActivity(i);
-                finish();
             }
         });
 
