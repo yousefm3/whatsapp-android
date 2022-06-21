@@ -53,7 +53,7 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
             Intent i = new Intent(contactsList.this, addContact.class);
             i.putExtra("username",userName);
             startActivity(i);
-            finish();
+
         });
 
         ImageButton logout = findViewById(R.id.backtologin);
