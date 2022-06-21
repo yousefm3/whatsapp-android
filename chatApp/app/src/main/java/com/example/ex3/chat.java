@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.ex3.adapters.chatAdapter;
 import com.example.ex3.adapters.contactsListAdapter;
 import com.example.ex3.viewmodels.ChatViewModel;
+import com.example.ex3.viewmodels.contactsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
@@ -24,21 +25,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class chat extends AppCompatActivity {
+public class chat extends AppCompatActivity implements RecyclerViewItem{
     userDao userDao = loginActivity.userDao;
     private List<Message> messages;
-    chatAdapter adapter;
+    contactsListAdapter adapter;
     private ChatViewModel viewModel;
-
+    private contactsViewModel _view = new contactsViewModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        RecyclerView _lvItems = findViewById(R.id.lstPosts_horizontal);
         Bundle extras = getIntent().getExtras();
         String ContactId = extras.getString("contactId");
         viewModel = new ChatViewModel(ContactId);
         System.out.println(ContactId);
-
+        chatAdapter chat_adapter;
         TextView textView = findViewById(R.id.Nameofspecificuser);
         textView.setText(loginActivity.usersDao2.getUser(ContactId).getName());
         ImageButton btnReturn = findViewById(R.id.backbuttonofspecificchat);
@@ -76,14 +78,27 @@ public class chat extends AppCompatActivity {
             }
         });
         RecyclerView lvItems = findViewById(R.id.recyclerviewofspecific);
-        adapter = new chatAdapter(this,viewModel.get().getValue());
-        lvItems.setAdapter(adapter);
+        chat_adapter = new chatAdapter(this,messages);
+        lvItems.setAdapter(chat_adapter);
         lvItems.setLayoutManager(new LinearLayoutManager(this));
         viewModel.get().observe(this, new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
-                adapter.setMessagesArrayList(messages);
+                chat_adapter.setMessagesArrayList(messages);
             }
         });
+        adapter = new contactsListAdapter(this, this);
+        _lvItems.setAdapter(adapter);
+        _lvItems.setLayoutManager(new LinearLayoutManager(this));
+        _view.get().observe(this, contacts -> {
+            adapter.setContacts(contacts);
+        });
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+        TextView textView = findViewById(R.id.Nameofspecificuser);
+        textView.setText(userDao.getContacts(loginActivity.userName).contacts.get(position).getContactDisplayName());
     }
 }
