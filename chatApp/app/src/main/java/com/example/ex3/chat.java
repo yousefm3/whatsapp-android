@@ -51,7 +51,7 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
         String ImageId = extras.getString("imageId");
         viewModel = new ChatViewModel(ContactId, ImageId);
         chatAdapter chat_adapter;
-        ImageView imageView = findViewById(R.id.imageviewofuser);
+        ImageView imageView = findViewById(R.id.imageviewofXuser);
         Uri myUri = Uri.parse(loginActivity.usersDao2.getUser(ContactId).getImage());
         imageView.setImageURI(myUri);
         TextView textView = findViewById(R.id.Nameofspecificuser);
@@ -79,7 +79,6 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
             finish();
         });
         ImageButton btnSend = findViewById(R.id.imageviewsendmessage);
-
         AppDB db_contact = Room.databaseBuilder(getApplicationContext(), AppDB.class, ContactId)
                 .allowMainThreadQueries().build();
         userDao contactDao = db_contact.userDao();
@@ -161,6 +160,10 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
     @Override
     public void onItemClick(int position) {
         TextView textView = findViewById(R.id.Nameofspecificuser);
+        ImageView imageView = findViewById(R.id.imageviewofXuser);
+        String stringImage = userDao.getContacts(loginActivity.userName).contacts.get(position).getImageID();
         textView.setText(userDao.getContacts(loginActivity.userName).contacts.get(position).getContactDisplayName());
+        imageView.setImageURI(Uri.parse(stringImage));
+
     }
 }

@@ -101,7 +101,7 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageviewofuser"
+                    android:id="@+id/imageviewofXuser"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_alignParentLeft="true"
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/imageviewofuser"
+                    android:layout_toRightOf="@id/imageviewofXuser"
                     android:text="Name of User"
                     android:textColor="@color/white"
                     android:textSize="20sp"

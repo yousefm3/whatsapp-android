@@ -201,6 +201,7 @@ public class registerActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == 1) {
                 uri = data.getData().toString();
+                Toast.makeText(registerActivity.this,"Picture Uploaded Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 }
