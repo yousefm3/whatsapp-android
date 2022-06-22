@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addContact"
-    android:background="@drawable/greenbg8">
+    android:background="@drawable/row_background"
+    tools:context=".addContact">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,54 +14,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_editor_absoluteX="10dp">
-
         <EditText
             android:id="@+id/etItem"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/input"
-            android:drawableLeft="@drawable/ic_person_green"
-            android:ems="10"
             android:hint="Enter contact's username"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/green"
-            android:textColorHint="@color/green"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"/>
 
-            <Button
-                android:id="@+id/saveBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="210dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/addimagebtn"
-                android:drawableLeft="@drawable/ic_add_person"
-                android:text="Add" />
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#075e54"
+            android:text="save" />
 
-            <Button
-                android:id="@+id/cancel_add_contact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/addimagebtn"
-                android:drawableLeft="@drawable/ic_cancel"
-                android:text="Cancel" />
-        </RelativeLayout>
-
+        <Button
+            android:id="@+id/cancel_add_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-50dp"
+            android:layout_marginTop="-50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#075e54"
+            android:text="Cancel" />
 
     </LinearLayout>
 
