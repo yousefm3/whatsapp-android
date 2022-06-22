@@ -44,10 +44,10 @@ public class addContact extends AppCompatActivity {
                 if (userDao2.getUser(contactName)!=null) {
                     if (userDao.getContact(contactName) == null) {
                         Contact con = new Contact(contactName, username,
-                                userDao2.getUser(contactName).getName(), "A", 1);
+                                userDao2.getUser(contactName).getName(), "A", userDao2.getUser(contactName).getImage());
                         userDao.insertContact(con);
                         contactDao.insertContact(new Contact(loginActivity.userName,contactName,
-                                userDao.getUser(loginActivity.userName).getName(),"A",1));
+                                userDao.getUser(loginActivity.userName).getName(),"A",userDao2.getUser(contactName).getImage()));
                         Toast.makeText(getApplicationContext(),"Add succeed",Toast.LENGTH_SHORT).show();
                         finish();
                     } else {

@@ -26,12 +26,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class registerActivity extends AppCompatActivity {
-    int SELECT_PHOTO = 1;
-    Uri uri;
-    ImageView imageView;
+    private static final int SELECT_IMAGE_CODE = 1;
+    public static String uri;
     EditText usernameIt, displayNameIt, passIt, passConfirmationIt;
     private AppDB db;
     private userDao userDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,7 @@ public class registerActivity extends AppCompatActivity {
                 boolean check = validateInfo(userName, displayName, pass, passConfirmation);
                 if (check){
                     registerUser(userName, displayName, pass);
-                    user u = new user(userName, displayName, pass,1, "server","token");
+                    user u = new user(userName, displayName, pass,uri, "server","token");
                     userDao.insertUser(u);
                     Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(registerActivity.this, loginActivity.class);
@@ -82,18 +82,18 @@ public class registerActivity extends AppCompatActivity {
         });
         ///add image button
         Button choose = findViewById(R.id.AddImageBtn);
-        imageView = findViewById(R.id.image);
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
+                Intent intent = new Intent();
                 intent.setType("image/*");
-                startActivityForResult(intent,SELECT_PHOTO);
+                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+                startActivityForResult(Intent.createChooser(intent, "title"),SELECT_IMAGE_CODE);
             }
         });
     }
     private void registerUser(String username, String name, String password) {
-        user u = new user(username,name, password, 1,"server","token");
+        user u = new user(username,name, password, uri,"server","token");
         Call<String> call = UserAPI.getInstance().getApi().register(u);
         call.enqueue(new Callback<String>() {
             @Override
@@ -196,20 +196,11 @@ public class registerActivity extends AppCompatActivity {
         return false;
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==SELECT_PHOTO && resultCode ==RESULT_OK && data != null && data.getData() != null){
-            uri = data.getData();
-            try{
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (requestCode == 1){
+            uri = data.getData().toString();
         }
     }
 }
