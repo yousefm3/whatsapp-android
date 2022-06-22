@@ -42,12 +42,6 @@ public class loginActivity extends AppCompatActivity {
         usersDB = Room.databaseBuilder(getApplicationContext(), AppDB.class, "appDB")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         usersDao2 = usersDB.userDao();
-        FloatingActionButton settings_login = findViewById(R.id.settingBtn_login);
-        settings_login.setOnClickListener(view -> {
-            Intent i = new Intent(loginActivity.this, SettingsActivity.class);
-            startActivity(i);
-            finish();
-        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

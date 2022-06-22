@@ -115,19 +115,7 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/settingBtn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/green"
-        android:paddingLeft="20dp"
-        android:src="@drawable/ic_baseline_settings_24"
-        android:tint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="7dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
