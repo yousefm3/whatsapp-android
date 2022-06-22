@@ -1,7 +1,5 @@
 package com.example.ex3;
 
-import android.net.Uri;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -13,11 +11,11 @@ public class user {
     private String username;
     private String name;
     private String password;
-    private String image;
+    private int image;
     private String server;
     private String token;
 
-    public user(@NonNull String username, String name, String password, String image, String server, String token) {
+    public user(@NonNull String username, String name, String password, int image, String server, String token) {
         this.username = username;
         this.name = name;
         this.password = password;
@@ -50,11 +48,11 @@ public class user {
         this.name = displayName;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

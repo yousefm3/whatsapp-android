@@ -1,6 +1,7 @@
 package com.example.ex3.api;
 
 import com.example.ex3.Contact;
+import com.example.ex3.Message;
 import com.example.ex3.user;
 
 import java.util.List;
@@ -20,18 +21,21 @@ public interface WebServiceAPI {
  @POST("login")
  Call<String> login(@Body user u);
 
- @GET("contacts")
- Call<List<Contact>> getContacts(@Body String username);
-
- @POST("contacts")
- Call<List<Contact>> AddContact(@Body String username);
+ @GET("contacts2")
+ Call<List<Contact>> getContacts(@Header("Authorization") String token);
 
  @GET("users")
  Call<List<user>> getUsers();
 
- @POST("contacts")
- Call<Void> createContact(@Body Contact post);
+ @POST("contacts2")
+ Call<String> addContact(@Body ContactTemp cont, @Header("Authorization") String token);
 
- @DELETE("contacts/{id}")
- Call<Void> deleteContact(@Path("id") int id);
+ @GET("contacts2/{ContID}")
+ Call<Contact> getContact(@Path("ContID") String ContID, @Header("Authorization") String token);
+
+ @GET("contacts2/{ContID}/messages")
+ Call<List<Message>> getMessages(@Path("ContID") String ContID, @Header("Authorization") String token);
+
+ @POST("contacts2/{ContID}/messages")
+ Call<String> addMessage(@Path("ContID") String ContID, @Body Content Content, @Header("Authorization") String token);
 }

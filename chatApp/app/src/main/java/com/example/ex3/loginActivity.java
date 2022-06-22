@@ -30,8 +30,8 @@ public class loginActivity extends AppCompatActivity {
     public static user loggedIn;
     public static String userName;
     private static AppDB usersDB;
+    public static String token;
     public static userDao usersDao2;
-    String uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,6 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String passWord = passET.getText().toString();
                 userName = usernameET.getText().toString();
-                uri = registerActivity.uri;
                 String correctPass = "";
                 if(usersDao2.getUser(userName)!=null) {
                     correctPass = usersDao2.getUser(userName).getPassword();
@@ -85,18 +84,18 @@ public class loginActivity extends AppCompatActivity {
         if(usersDao2.getUser(username)!=null) {
             name = usersDao2.getUser(username).getName();
         }
-        user u = new user(username,name, password,uri,"server", "token");
+        user u = new user(username,name, password,1,"server", "token");
         Call<String> call = UserAPI.getInstance().getApi().login(u);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                String resp = response.body();
+                token = response.body();
                 if (response.isSuccessful()){
                     Toast.makeText(loginActivity.this,"welcome" + u.getName(), Toast.LENGTH_SHORT).show();
-                    u.setToken(String.valueOf(resp));
+
                 }
                 else{
-                    Toast.makeText(loginActivity.this,String.valueOf(resp), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginActivity.this,String.valueOf(token), Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

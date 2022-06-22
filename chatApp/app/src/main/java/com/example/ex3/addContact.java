@@ -10,7 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ex3.api.ContactTemp;
+import com.example.ex3.api.UserAPI;
+
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class addContact extends AppCompatActivity {
     private AppDB db;
@@ -44,10 +51,31 @@ public class addContact extends AppCompatActivity {
                 if (userDao2.getUser(contactName)!=null) {
                     if (userDao.getContact(contactName) == null) {
                         Contact con = new Contact(contactName, username,
-                                userDao2.getUser(contactName).getName(), "A", userDao2.getUser(contactName).getImage());
+                                userDao2.getUser(contactName).getName(), "A", 1);
                         userDao.insertContact(con);
                         contactDao.insertContact(new Contact(loginActivity.userName,contactName,
-                                userDao.getUser(loginActivity.userName).getName(),"A",userDao2.getUser(contactName).getImage()));
+                                userDao.getUser(loginActivity.userName).getName(),"A",1));
+
+
+
+                        ContactTemp cont = new ContactTemp(contactName,contactName,"233");
+                        Call<String> call = UserAPI.getInstance().getApi().addContact(cont,loginActivity.token);
+                        call.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                String resp = response.body();
+                                if (response.isSuccessful()){
+
+                                }
+                                else{
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                            }
+                        });
+
+
                         Toast.makeText(getApplicationContext(),"Add succeed",Toast.LENGTH_SHORT).show();
                         finish();
                     } else {

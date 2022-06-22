@@ -3,7 +3,6 @@ package com.example.ex3.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,8 +73,6 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
         if (contacts != null) {
             Contact current = contacts.get(position);
             holder.name.setText(current.getContactDisplayName());
-            Uri myUri = Uri.parse(current.getImageID());
-            holder.contactImage.setImageURI(myUri);
             ContactWithMessages q = loginActivity.userDao.getMessages(current.getContactUsername());
             if (q != null && q.messages.size() > 0) {
                 holder.created.setText(q.messages.get(q.messages.size() - 1).created);

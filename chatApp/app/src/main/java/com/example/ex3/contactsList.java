@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.ex3.adapters.contactsListAdapter;
 import com.example.ex3.api.ContactAPI;
+import com.example.ex3.api.ContactTemp;
 import com.example.ex3.api.UserAPI;
 import com.example.ex3.viewmodels.contactsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -82,6 +83,21 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
 
     @Override
     public void onItemClick(int position) {
+
+        Call<Contact> call = UserAPI.getInstance().getApi().getContact(
+                userDao.getContacts2().get(position).getContactUsername()
+                ,loginActivity.token);
+        call.enqueue(new Callback<Contact>() {
+            @Override
+            public void onResponse(Call<Contact> call, Response<Contact> response) {
+                Contact c1 = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<Contact> call, Throwable t) {}
+        });
+
+
         Intent i = new Intent(contactsList.this, chat.class);
         i.putExtra("contactId",userDao.getContacts2().get(position).getContactUsername());
         startActivity(i);

@@ -124,19 +124,7 @@
         app:layout_constraintEnd_toEndOf="@+id/id_passConfirmation"
         app:layout_constraintStart_toStartOf="@+id/id_passConfirmation"
         app:layout_constraintTop_toBottomOf="@+id/id_passConfirmation" />
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="230dp"
-        android:text="Upload"
-        android:textAllCaps="false"
-        android:backgroundTint="#075e54"
-        android:visibility="invisible"
-        tools:ignore="MissingConstraints"
-        android:clickable="false"/>
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
