@@ -26,7 +26,7 @@
             android:layout_marginStart="-5dp"
             android:layout_marginLeft="65dp"
             android:layout_marginTop="10dp"
-            android:text="______________________________________________________"
+            android:text="_________________________________"
             android:textColor="#B3ACAC" />
 
 
@@ -76,7 +76,6 @@
             android:layout_below="@id/nameofuser"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/cardviewofuser"
-            android:text="last Message here"
             android:textColor="#6a6a6a"
             android:textSize="15sp">
 
@@ -88,7 +87,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="280dp"
             android:layout_marginTop="10dp"
-            android:text="Date Here"
             android:textColor="#6a6a6a"
             android:textSize="20sp">
 
