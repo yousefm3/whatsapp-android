@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ex3.adapters.chatAdapter;
@@ -40,11 +42,15 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
         RecyclerView _lvItems = findViewById(R.id.lstPosts_horizontal);
         Bundle extras = getIntent().getExtras();
         String ContactId = extras.getString("contactId");
-        viewModel = new ChatViewModel(ContactId);
-        System.out.println(ContactId);
+        String ContactImageId = extras.getString("contactImageId");
+        viewModel = new ChatViewModel(ContactId, ContactImageId);
+//        System.out.println(ContactId);
         chatAdapter chat_adapter;
         TextView textView = findViewById(R.id.Nameofspecificuser);
+        ImageView imageView = findViewById(R.id.imageviewofspecifieuser);
         textView.setText(loginActivity.usersDao2.getUser(ContactId).getName());
+        Uri myUri = Uri.parse(loginActivity.usersDao2.getUser(ContactId).getImage());
+        imageView.setImageURI(myUri);
         ImageButton btnReturn = findViewById(R.id.backbuttonofspecificchat);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +120,9 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
     @Override
     public void onItemClick(int position) {
         TextView textView = findViewById(R.id.Nameofspecificuser);
+        ImageView imageView = findViewById(R.id.imageviewofspecifieuser);
         textView.setText(userDao.getContacts(loginActivity.userName).contacts.get(position).getContactDisplayName());
+        Uri myUri = Uri.parse(userDao.getContacts(loginActivity.userName).contacts.get(position).getImageID());
+        imageView.setImageURI(myUri);
     }
 }

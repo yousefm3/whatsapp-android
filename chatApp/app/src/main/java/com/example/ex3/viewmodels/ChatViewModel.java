@@ -13,12 +13,11 @@ import java.util.List;
 public class ChatViewModel extends ViewModel {
 
     private ChatRepository repository;
-
     private LiveData<List<Message>> chat;
 
 
-    public ChatViewModel (String contactName) {
-        repository = new ChatRepository(contactName);
+    public ChatViewModel (String contactName, String contactImage) {
+        repository = new ChatRepository(contactName, contactImage);
         chat = repository.getAll();
     }
 

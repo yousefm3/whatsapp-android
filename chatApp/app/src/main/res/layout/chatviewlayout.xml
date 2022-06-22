@@ -52,8 +52,8 @@
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/defaultprofile"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/defaultprofile" />
 
 
         <TextView

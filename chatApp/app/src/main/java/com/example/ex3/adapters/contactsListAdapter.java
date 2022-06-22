@@ -75,7 +75,6 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
             Contact current = contacts.get(position);
             holder.name.setText(current.getContactDisplayName());
             Uri myUri = Uri.parse(current.getImageID());
-            System.out.println("imageID is :" + current.getImageID());
             holder.contactImage.setImageURI(myUri);
             ContactWithMessages q = loginActivity.userDao.getMessages(current.getContactUsername());
             if (q != null && q.messages.size() > 0) {
