@@ -100,6 +100,7 @@ public class contactsList extends AppCompatActivity implements RecyclerViewItem{
 
         Intent i = new Intent(contactsList.this, chat.class);
         i.putExtra("contactId",userDao.getContacts2().get(position).getContactUsername());
+        i.putExtra("imageId", userDao.getContacts2().get(position).getImageID());
         startActivity(i);
         finish();
     }

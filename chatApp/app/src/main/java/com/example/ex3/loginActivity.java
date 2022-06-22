@@ -32,6 +32,7 @@ public class loginActivity extends AppCompatActivity {
     private static AppDB usersDB;
     public static String token;
     public static userDao usersDao2;
+    String uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String passWord = passET.getText().toString();
                 userName = usernameET.getText().toString();
+                uri = registerActivity.uri;
                 String correctPass = "";
                 if(usersDao2.getUser(userName)!=null) {
                     correctPass = usersDao2.getUser(userName).getPassword();
@@ -84,7 +86,7 @@ public class loginActivity extends AppCompatActivity {
         if(usersDao2.getUser(username)!=null) {
             name = usersDao2.getUser(username).getName();
         }
-        user u = new user(username,name, password,1,"server", "token");
+        user u = new user(username,name, password,uri,"server", "token");
         Call<String> call = UserAPI.getInstance().getApi().login(u);
         call.enqueue(new Callback<String>() {
             @Override

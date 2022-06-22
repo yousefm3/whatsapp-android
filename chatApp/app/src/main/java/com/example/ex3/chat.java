@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ex3.adapters.chatAdapter;
@@ -46,8 +48,12 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
         RecyclerView _lvItems = findViewById(R.id.lstPosts_horizontal);
         Bundle extras = getIntent().getExtras();
         String ContactId = extras.getString("contactId");
-        viewModel = new ChatViewModel(ContactId);
+        String ImageId = extras.getString("imageId");
+        viewModel = new ChatViewModel(ContactId, ImageId);
         chatAdapter chat_adapter;
+        ImageView imageView = findViewById(R.id.imageviewofuser);
+        Uri myUri = Uri.parse(loginActivity.usersDao2.getUser(ContactId).getImage());
+        imageView.setImageURI(myUri);
         TextView textView = findViewById(R.id.Nameofspecificuser);
         textView.setText(loginActivity.usersDao2.getUser(ContactId).getName());
         ImageButton btnReturn = findViewById(R.id.backbuttonofspecificchat);

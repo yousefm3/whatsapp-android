@@ -14,9 +14,9 @@ public class Contact {
     private String creatorUsername;
     private String contactDisplayName;
     private String contactServer;
-    private int imageID;
+    private String imageID;
 
-    public Contact(String contactUsername, String creatorUsername, String contactDisplayName, String contactServer, int imageID) {
+    public Contact(String contactUsername, String creatorUsername, String contactDisplayName, String contactServer, String imageID) {
         this.contactUsername = contactUsername;
         this.creatorUsername = creatorUsername;
         this.contactDisplayName = contactDisplayName;
@@ -24,11 +24,11 @@ public class Contact {
         this.imageID = imageID;
     }
 
-    public int getImageID() {
+    public String getImageID() {
         return imageID;
     }
 
-    public void setImageID(int imageID) {
+    public void setImageID(String imageID) {
         this.imageID = imageID;
     }
 

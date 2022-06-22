@@ -19,12 +19,14 @@ public class ChatRepository {
     private ChatData ChatData;
     private ContactAPI api;
     private String contactName;
+    private String imageId;
 
-    public ChatRepository(String contact) {
+    public ChatRepository(String contact, String image) {
         dao = loginActivity.userDao;
         contactName = contact;
         ChatData = new ChatData();
         api = new ContactAPI();
+        imageId = image;
 
     }
 
