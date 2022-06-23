@@ -148,9 +148,11 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
     public void onItemClick(int position) {
         TextView textView = findViewById(R.id.Nameofspecificuser);
         ImageView imageView = findViewById(R.id.imageviewofXuser);
-        String stringImage = userDao.getContacts(loginActivity.userName).contacts.get(position).getImageID();
+        String stringImage = "";
         textView.setText(userDao.getContacts(loginActivity.userName).contacts.get(position).getContactDisplayName());
-        imageView.setImageURI(Uri.parse(stringImage));
-
+        if(userDao.getContacts(loginActivity.userName).contacts.get(position).getImageID() != null) {
+            stringImage = userDao.getContacts(loginActivity.userName).contacts.get(position).getImageID();
+            imageView.setImageURI(Uri.parse(stringImage));
+        }
     }
 }
