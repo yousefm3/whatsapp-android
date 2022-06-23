@@ -60,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
                 url_Input = findViewById(R.id.urlInput);
                 String new_url = url_Input.getText().toString();
                 UserAPI.setBase_Url(new_url);
-                Toast.makeText(SettingsActivity.this, UserAPI.getBase_Url(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingsActivity.this, "Base Url changed successfully", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -4,41 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/row_background"
+    android:background="@drawable/base_background"
     tools:context=".addContact">
-    <LinearLayout
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/ic_contact"
+        android:layout_marginBottom="30dp"
+        android:text=" "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="Enter contact's username"
+        android:textColorHint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_editor_absoluteX="10dp">
-        <EditText
-            android:id="@+id/etItem"
-            android:hint="Enter contact's username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        app:layout_constraintVertical_bias="0.451" />
 
-        <Button
-            android:id="@+id/saveBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_gravity="center_horizontal"
-            android:background="#075e54"
-            android:text="save" />
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/addimagebtn"
+        android:text="save"
+        android:textColor="#1D3936"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etItem"
+        app:layout_constraintVertical_bias="0.05"
+        tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/cancel_add_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-50dp"
-            android:layout_marginTop="-50dp"
-            android:layout_gravity="center_horizontal"
-            android:background="#075e54"
-            android:text="Cancel" />
+    <Button
+        android:id="@+id/cancel_add_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/addimagebtn"
+        android:text="Cancel"
+        android:textColor="#1D3936"
+        app:layout_constraintBottom_toBottomOf="@id/saveBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toEndOf="@+id/saveBtn"
+        app:layout_constraintTop_toTopOf="@id/saveBtn"
+        app:layout_constraintVertical_bias="0.0" />
 
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

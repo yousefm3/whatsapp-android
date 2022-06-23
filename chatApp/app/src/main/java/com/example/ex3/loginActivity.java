@@ -93,7 +93,7 @@ public class loginActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 token = response.body();
                 if (response.isSuccessful()){
-                    Toast.makeText(loginActivity.this,"welcome" + u.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginActivity.this,"API succeed login", Toast.LENGTH_SHORT).show();
 
                 }
                 else{

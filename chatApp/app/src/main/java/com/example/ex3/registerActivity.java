@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class registerActivity extends AppCompatActivity {
     private static final int SELECT_IMAGE_CODE = 1;
-    public static String uri;
+    public static String uri = null;
     EditText usernameIt, displayNameIt, passIt, passConfirmationIt;
     private AppDB db;
     private userDao userDao;
@@ -99,7 +99,7 @@ public class registerActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 String responseRegister = response.body();
                 if (response.isSuccessful()){
-                    Toast.makeText(registerActivity.this,String.valueOf(responseRegister), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(registerActivity.this,"API succeed register", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(registerActivity.this,String.valueOf(responseRegister), Toast.LENGTH_SHORT).show();
@@ -200,8 +200,12 @@ public class registerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == 1) {
-                uri = data.getData().toString();
-                Toast.makeText(registerActivity.this,"Picture Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                if (data != null) {
+                    uri = data.getData().toString();
+                    Toast.makeText(registerActivity.this,"Picture Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(registerActivity.this,"Done without uploading picture", Toast.LENGTH_SHORT).show();
+                }
         }
     }
 }
