@@ -86,24 +86,5 @@ public class loginActivity extends AppCompatActivity {
         if(usersDao2.getUser(username)!=null) {
             name = usersDao2.getUser(username).getName();
         }
-        user u = new user(username,name, password,uri,"server", "token");
-        Call<String> call = UserAPI.getInstance().getApi().login(u);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                token = response.body();
-                if (response.isSuccessful()){
-                    Toast.makeText(loginActivity.this,"API succeed login", Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    Toast.makeText(loginActivity.this,String.valueOf(token), Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(loginActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

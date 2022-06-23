@@ -56,26 +56,6 @@ public class addContact extends AppCompatActivity {
                         contactDao.insertContact(new Contact(loginActivity.userName,contactName,
                                 userDao.getUser(loginActivity.userName).getName(),"A",userDao2.getUser(contactName).getImage()));
 
-
-
-                        ContactTemp cont = new ContactTemp(contactName,contactName,"233");
-                        Call<String> call = UserAPI.getInstance().getApi().addContact(cont,loginActivity.token);
-                        call.enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
-                                String resp = response.body();
-                                if (response.isSuccessful()){
-
-                                }
-                                else{
-                                }
-                            }
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
-                            }
-                        });
-
-
                         Toast.makeText(getApplicationContext(),"Add succeed",Toast.LENGTH_SHORT).show();
                         finish();
                     } else {

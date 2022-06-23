@@ -62,7 +62,7 @@ public class registerActivity extends AppCompatActivity {
                 String passConfirmation = passConfirmationIt.getText().toString();
                 boolean check = validateInfo(userName, displayName, pass, passConfirmation);
                 if (check){
-                    registerUser(userName, displayName, pass);
+
                     user u = new user(userName, displayName, pass,uri, "server","token");
                     userDao.insertUser(u);
                     Toast.makeText(getApplicationContext(),"Registeration succeed",Toast.LENGTH_SHORT).show();
@@ -88,26 +88,6 @@ public class registerActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
                 startActivityForResult(Intent.createChooser(intent, "title"),SELECT_IMAGE_CODE);
-            }
-        });
-    }
-    private void registerUser(String username, String name, String password) {
-        user u = new user(username,name, password, uri,"server","token");
-        Call<String> call = UserAPI.getInstance().getApi().register(u);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String responseRegister = response.body();
-                if (response.isSuccessful()){
-                    Toast.makeText(registerActivity.this,"API succeed register", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(registerActivity.this,String.valueOf(responseRegister), Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(registerActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

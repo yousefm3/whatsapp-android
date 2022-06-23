@@ -104,6 +104,7 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
                 viewModel.repository.add();
                 ContactWithMessages c = userDao.getMessages(ContactId);
                 viewModel.get();
+                content.setText("");
                 // userDao.insertMessage(msgReviever);
             }
         });
