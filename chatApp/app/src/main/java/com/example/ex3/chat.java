@@ -52,7 +52,10 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
         viewModel = new ChatViewModel(ContactId, ImageId);
         chatAdapter chat_adapter;
         ImageView imageView = findViewById(R.id.imageviewofXuser);
-        Uri myUri = Uri.parse(loginActivity.usersDao2.getUser(ContactId).getImage());
+        Uri myUri = null;
+        if (loginActivity.usersDao2.getUser(ContactId).getImage()!=null) {
+            myUri = Uri.parse(loginActivity.usersDao2.getUser(ContactId).getImage());
+        }
         imageView.setImageURI(myUri);
         TextView textView = findViewById(R.id.Nameofspecificuser);
         textView.setText(loginActivity.usersDao2.getUser(ContactId).getName());
