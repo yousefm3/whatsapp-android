@@ -72,8 +72,13 @@ public class contactsListAdapter extends RecyclerView.Adapter<contactsListAdapte
     @Override
     public void onBindViewHolder(contactViewHolder holder, int position) {
         if (contacts != null) {
+            Uri myUri = null;
             Contact current = contacts.get(position);
-            Uri myUri = Uri.parse(current.getImageID());
+            if(current.getImageID()!= null) {
+                myUri = Uri.parse(current.getImageID());
+            }
+
+
             holder.contactImage.setImageURI(myUri);
             holder.name.setText(current.getContactDisplayName());
             ContactWithMessages q = loginActivity.userDao.getMessages(current.getContactUsername());
