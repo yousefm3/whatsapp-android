@@ -60,5 +60,8 @@ public class ChatRepository {
     public MutableLiveData<List<Message>> getAll() {
         return ChatData;
     }
+    public void add() {
+        ChatData.setValue(dao.getMessages(contactName).messages);
+    }
 
 }

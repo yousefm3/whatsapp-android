@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ChatViewModel extends ViewModel {
 
-    private ChatRepository repository;
+    public ChatRepository repository;
 
     private LiveData<List<Message>> chat;
 

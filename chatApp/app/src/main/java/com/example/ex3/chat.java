@@ -96,32 +96,12 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
 
                 Content c1 = new Content(content.getText().toString());
 
-                //api call
-                Call<String> call = UserAPI.getInstance().getApi().addMessage(ContactId,c1,loginActivity.token);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        String resp = response.body();
-                        if (response.isSuccessful()){
-
-                        }
-                        else{
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                    }
-                });
 
 
 
-
-                //Message msgReviever = new Message();
-                /**
-                 * ...
-                 */
                 userDao.insertMessage(msgSender);
                 contactDao.insertMessage(msgReciever);
+                viewModel.repository.add();
                 ContactWithMessages c = userDao.getMessages(ContactId);
                 viewModel.get();
                 // userDao.insertMessage(msgReviever);
@@ -145,11 +125,14 @@ public class chat extends AppCompatActivity implements RecyclerViewItem{
         chat_adapter = new chatAdapter(this,messages);
         lvItems.setAdapter(chat_adapter);
         lvItems.setLayoutManager(new LinearLayoutManager(this));
-        viewModel.get().observe(this, new Observer<List<Message>>() {
-            @Override
-            public void onChanged(List<Message> messages) {
-                chat_adapter.setMessagesArrayList(messages);
-            }
+//        viewModel.get().observe(this, new Observer<List<Message>>() {
+//            @Override
+//            public void onChanged(List<Message> messages) {
+//                chat_adapter.setMessagesArrayList(messages);
+//            }
+//        });
+        viewModel.repository.getAll().observe(this,v ->{
+            chat_adapter.setMessagesArrayList(v);
         });
         adapter = new contactsListAdapter(this, this);
         _lvItems.setAdapter(adapter);
